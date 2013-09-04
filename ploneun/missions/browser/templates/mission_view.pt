@@ -7,43 +7,128 @@
       i18n:domain="ploneun.missions">
 <body>
 
-<tal:comment tal:condition="nothing">
-    This is a sample view template. It will not be used for rendering the
-    content unless activated by creation of a view class with a matching name.
-    
-    Note that we're using Plone 4 macros. Replace them with Plone 3 macros
-    if needed.
-</tal:comment>
-
 <metal:main fill-slot="content-core">
+
   <metal:content-core define-macro="content-core">
 
-    <tal:block repeat="widget view/widgets/values">
-        <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
+    <div tal:define="mission nocall:context;
+		     mission_view nocall:view">
+
+      <metal:mission define-macro="mission">
+
+	<div class="evenDetails vcard">
+	  <h2>Mission Details</h2>
+
+	  <div class="eventDetail">
+	    <h3>When</h3>
+	    <div>
+	      <span tal:content="python: mission.start.strftime('%e %B %Y')"></span>
+	      to <br />
+	      <span tal:content="python: mission.end.strftime('%e %B %Y')"></span>
+	    </div>
+	  </div>
+
+	  <div class="eventDetail">
+	    <h3>Scope</h3>
+	    <div class="location">
+	      <span tal:content="structure
+				 mission_view/w/mission_scope/render"></span>
+	    </div>
+	  </div>
+
+	  <tal:country tal:condition="mission/country">
+	    <div class="eventDetail">
+	      <h3>Country</h3>
+	      <div class="location">
+		<span tal:content="structure
+				   mission_view/w/country/render"></span>
+	      </div>
+	    </div>
+	  </tal:country>
+
+	  <tal:where tal:condition="mission/mission_location">
+	    <div class="eventDetail">
+	      <h3>City</h3>
+	      <div class="location">
+		<span tal:content="structure
+				   mission_view/w/mission_location/render"></span>
+	      </div>
+	    </div>
+	  </tal:where>
+
+	  <tal:id_province tal:condition="mission/id_province">
+            <div class="eventDetail">
+              <h3>Province</h3>
+              <div class="location">
+                <span tal:content="structure
+				   mission_view/w/id_province/render"></span>
+              </div>
+            </div>
+	  </tal:id_province>
+
+          <tal:id_province tal:condition="mission/id_province">
+            <div class="eventDetail">
+              <h3>Province</h3>
+              <div class="location">
+                <span tal:content="structure
+				   mission_view/w/id_province/render"></span>
+              </div>
+            </div>
+          </tal:id_province>
+	  
+          <tal:members tal:condition="mission/mission_members">
+            <div class="eventDetail">
+              <h3>Members</h3>
+              <div class="attendees">
+                <p tal:on-error="string:Error: Invalid user found. Edit and re-add
+				 members." tal:content="structure mission_view/w/mission_members/render"></p>
+              </div>
+            </div>
+          </tal:members>
+
+          <tal:mission_support_staff tal:condition="mission/mission_members">
+            <div class="eventDetail">
+              <h3>Support Staff</h3>
+              <div class="attendees">
+                <p tal:on-error="string:Error: Invalid user found. Edit and re-add
+				 staff." tal:content="structure mission_view/w/mission_support_staff/render"></p>
+              </div>
+            </div>
+          </tal:mission_support_staff>
+
+	</div>
+
+	<h3>Output Stream</h3>
+	<p tal:content="mission/output_stream"></p>
+
+	<h3>Contribution to Output</h3>
+	<p tal:content="structure mission_view/w/output_contribution/render"></p>
+
+	<h3>Funding Source</h3>
+	<p tal:content="mission/mission_funding_source"></p>
+
+      </metal:mission>
+
+    </div> 
+
+    <h2>Mission Report</h2>
+    
+    <dl class="portalMessage info" tal:condition="not:view/contains_missionreport">
+      <dt>Add Mission Report</dt>
+      <dd>No Mission Report has been added to this mission yet.
+        Click on <b>
+	  <a href="++add++reddplusid.missionreport.missionreport">
+	    Mission Report
+	</a>
+	</b> to add a new draft report.
+    </dl>
+
+    <tal:block define="listing_macro context/folder_listing/macros/listing">
+      <metal:use_macro use-macro="listing_macro" />
     </tal:block>
 
-    <fieldset tal:repeat="group view/groups"
-              tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
-        <legend tal:content="group/label" />
-        <div class="field" tal:repeat="widget group/widgets/values">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </fieldset>
-
-    <fieldset id="folder-listing">
-        <legend>Contents</legend>
-        <tal:block define="listing_macro context/folder_listing/macros/listing">
-            <metal:use_macro use-macro="listing_macro" />
-        </tal:block>
-    </fieldset>
-
   </metal:content-core>
+
 </metal:main>
 
 </body>
