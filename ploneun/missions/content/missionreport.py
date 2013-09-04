@@ -21,7 +21,7 @@ from plone.formwidget.autocomplete import AutocompleteFieldWidget
 from plone.formwidget.autocomplete import AutocompleteMultiFieldWidget
 from plone.z3cform.textlines.textlines import TextLinesFieldWidget
 from collective.z3cform.widgets.enhancedtextlines import \
-EnhancedTextLinesFieldWidget
+    EnhancedTextLinesFieldWidget
 
 
 from ploneun.missions import MessageFactory as _

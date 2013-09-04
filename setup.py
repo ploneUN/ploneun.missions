@@ -34,6 +34,9 @@ setup(name='ploneun.missions',
           'plone.app.multilingual',
           'plone.multilingualbehavior',
           # -*- Extra requirements: -*-
+          'collective.z3cform.widgets',
+          'p01.vocabulary.country',
+          'plone.principalsource',
       ],
       extras_require={
           'test': [

@@ -25,7 +25,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 
 import p01.vocabulary.country
 
-from ploneun.mission import MessageFactory as _
+from ploneun.missions import MessageFactory as _
 
 
 # Interface class; used to define content-type schema.
@@ -41,13 +41,11 @@ streams = SimpleVocabulary(
                 title=_(u'Changes to Work Paradigm and Culture')),
      SimpleTerm(value=u'Inclusion / Involvement of Stakeholders', 
                 title=_(u'Inclusion / Involvement of Stakeholders')),
- ]
-) 
+]) 
 
 mission_funding_sources = SimpleVocabulary(
     [SimpleTerm(value=u'Multilateral', 
-
-            title=_(u'Multilateral')),
+                title=_(u'Multilateral')),
      SimpleTerm(value=u'Bilateral', 
                 title=_(u'Bilateral')),
      SimpleTerm(value=u'Private Sector', 
@@ -60,7 +58,7 @@ mission_funding_sources = SimpleVocabulary(
                 title=_(u'CSO')),
      SimpleTerm(value=u'Non-Profit Foundation', 
                 title=_(u'Non-Profit Foundation')),
- ])
+])
 
 mission_scope_type = SimpleVocabulary(
     [SimpleTerm(value=u'International', 
@@ -69,11 +67,11 @@ mission_scope_type = SimpleVocabulary(
                 title=_(u'National')),
      SimpleTerm(value=u'Regional', 
                 title=_(u'Regional')),
- ])
+])
 
 id_provinces = SimpleVocabulary(
     [
-                SimpleTerm(value=u'ID-AC', title=_(u'Aceh')),
+        SimpleTerm(value=u'ID-AC', title=_(u'Aceh')),
         SimpleTerm(value=u'ID-BA', title=_(u'Bali')),
         SimpleTerm(value=u'ID-BB', title=_(u'Bangka Belitung')),
         SimpleTerm(value=u'ID-BT', title=_(u'Banten')),
@@ -108,8 +106,7 @@ id_provinces = SimpleVocabulary(
         SimpleTerm(value=u'ID-JK', title=_(u'Jakarta Raya')),
         SimpleTerm(value=u'ID-YO', title=_(u'Yogyakarta')),
     ]
-
-            )
+)
 
 class IMission(form.Schema, IImageScaleTraversable):
     """

@@ -117,7 +117,7 @@
       <dt>Add Mission Report</dt>
       <dd>No Mission Report has been added to this mission yet.
         Click on <b>
-	  <a href="++add++reddplusid.missionreport.missionreport">
+	  <a href="++add++ploneun.missions.missionreport">
 	    Mission Report
 	</a>
 	</b> to add a new draft report.
