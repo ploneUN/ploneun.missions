@@ -36,49 +36,63 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     UN Mission Report
     """
 
-    form.widget(mission_author=AutocompleteMultiFieldWidget)
-    mission_author= schema.List(
-            title=_(u'Author'),
-            description=_(u'List of Authors. Enter '
-                'name to search, select and press Enter to add. Repeat to '
-                'to add additional members with principal author first.'),
-            value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
-            default=[],
-            missing_value=(),
-            required=True,
-            )
 
-    mission_achievements = RichText(
-            title=_(u'Summary of Main Achievements'),
-            description=_(u'Please fill this section in short telex '
-            'style.'),
-            )
-
-    mission_findings = RichText(
-            title=_(u'Mission Findings'),
-            description=_(u'Please keep to approx. 500 words.  '
-            'Other relevant documents can be attached below.'),
-            )
-
-    mission_followup = RichText(
-            title = _(u'Follow-up actions/next steps'),
-            description = _(u'In point form, include who should be doing '
-        'what.')
+    report_outcome = schema.TextLine(
+        title=_(u'Country / Regional Programme Outcome'),
+        description=_(u'Enter outcome code here eg. IDN 101'),
+        required=False
     )
 
-    form.widget(mission_distribution=EnhancedTextLinesFieldWidget)
-    mission_distribution = schema.Tuple(
-        title=_(u'Additional Email Distribution List'),
-        description=_(u'Email addresses to which a copy of this '
-           'report should be sent. One email per entry. Click Add  '
-            'after each new entry. eg. '
-           'username@unorcid.org. Authors, members and '
-           'supporting staff are already included and need not '
-           'be specified here.'),
-        default=(),
+    form.widget(report_outcome_text="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+    report_outcome_text = schema.Text(
+        title=_(u'Contribution to Outcome'),
+        description=_(u'Please describe briefly how your mission has'
+            'contributed to realizing the relevant country/regional outcome.'),
+        required=False
+    )
+
+    form.widget(report_author=AutocompleteMultiFieldWidget)
+    report_author= schema.List(
+        title=_(u'Author(s)'),
+        description=_(u'List of Authors. Enter '
+            'name to search, select and press Enter to add. Repeat to '
+            'to add additional members with principal author first.'),
+        value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
+        default=[],
         missing_value=(),
-        value_type=schema.TextLine(),
-        required=False,
+        required=True,
+    )
+
+
+    form.widget(achievements_summary="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+    achievements_summary = schema.Text(
+        title=_(u'Achievements Summary'),
+        description=_(u'Please fill this section in short telex style'),
+        required=False
+    )
+
+    form.widget(mission_findings="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+    mission_findings = schema.Text(
+        title=_(u'Mission Findings'),
+        description=_(u'Please keep to approx 500 words. Other relevant documents'
+                ' can be attached below.'),
+        required=False
+    )
+
+    form.widget(mission_followup="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+    mission_followup = schema.Text(
+        title=_(u'Follow-up actions/next steps'),
+        description=_(u'In point form, include who should be doing what. '
+                    u'One follow-up action per line.'),
+        required=False
+    )
+
+    form.widget(mission_contact="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+    mission_contact = schema.Text(
+        title=_(u'List of Contacts'),
+        description=_(u'List of professionals and/or organizations met with '
+            u'during the mission'),
+        required=False
     )
 
 class NameFromTitle(grok.Adapter):

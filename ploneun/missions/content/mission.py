@@ -13,7 +13,6 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.namedfile.field import NamedImage, NamedFile
 from plone.namedfile.field import NamedBlobImage, NamedBlobFile
 
-from plone.app.textfield import RichText
 from plone.z3cform.textlines.textlines import TextLinesFieldWidget
 from collective.z3cform.widgets.enhancedtextlines import \
     EnhancedTextLinesFieldWidget
@@ -27,6 +26,7 @@ from plone.app.dexterity.behaviors.metadata import IBasic
 import p01.vocabulary.country
 
 from ploneun.missions import MessageFactory as _
+from collective import dexteritytextindexer
 
 
 # Interface class; used to define content-type schema.
@@ -40,62 +40,18 @@ class IMission(IBasic, IImageScaleTraversable):
                             description=u'Brief title of mission. eg. '
                             'Public Consultation for UN Workshop.')
 
-    description = schema.Text(title=u'Overall Objective', 
+    description = schema.Text(title=u'Mission Objective', 
                               description=u'Briefly describe the objectives '
                               'of the mission.')
-
-    startDate = schema.Datetime(
-        title=_(u'Start date'),
-    )
-
-    endDate  = schema.Datetime(
-        title=_(u'End date'),
-    )
-    
-    output_stream = schema.Choice(
-        vocabulary='ploneun.missions.output_streams',
-        title=_(u'Output Stream'),
-        description=_(u'Select Streams'),
-        required=True,
-    )
-
-    output_contribution = RichText(
-        title=_(u'Contribution to selected output stream'),
-        description=_(u'Please describe briefly how your '
-                      'mission has contributed to realizing the '
-                      'relevant stream outcome'),
-    )
-
-    mission_funding_source = schema.Choice(
-        title=_(u'Source of Mission Funding'),
-        vocabulary=u'ploneun.missions.funding_sources',
-        required=True,
-    )
-
-    form.widget(mission_members=AutocompleteMultiFieldWidget)
-    mission_members= schema.List(
-        title=_(u'Mission Members'),
-        description=_(u'List of Mission Members. Enter '
-                      'name to search, select and press Enter to add. Repeat to '
-                      'to add additional members.'),
-        value_type=schema.Choice(vocabulary=u"plone.principalsource.Users",),
-        required=True,
-    )
-
-    form.widget(mission_support_staff=AutocompleteMultiFieldWidget)
-    mission_support_staff= schema.List(
-        title=_(u'Support Staff'),
-        description=_(u'List of support staff '
-                      'that have made a contribution to the success '
-                      'of the mission. Enter name to search. Select and '
-                      'press enter to add. Repeat to add additional staff.'),
-        value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
-        required=False,
-    )
 
     mission_scope= schema.Choice(
         title=_(u'Mission Scope'),
         vocabulary='ploneun.missions.mission_scope',
+    )
+
+    mission_city = schema.TextLine(
+        title=_(u'City'),
+        required=False
     )
 
     country = schema.Choice(
@@ -108,11 +64,42 @@ class IMission(IBasic, IImageScaleTraversable):
         missing_value = None,
     )
 
-    form.widget(mission_location=EnhancedTextLinesFieldWidget)
-    mission_location= schema.Tuple(
-        title=_(u'City / Location (One per line)'),
-        description=_(u'Fill in city or location name and click Add button.'),
-        value_type=schema.TextLine(),
-        missing_value=(),
+    startDate = schema.Datetime(
+        title=_(u'Start date'),
+    )
+
+    endDate  = schema.Datetime(
+        title=_(u'End date'),
+    )
+
+    form.widget(mission_members=AutocompleteMultiFieldWidget)
+    mission_members= schema.List(
+        title=_(u'Mission Members'),
+        description=_(u'List of Mission Members. Enter '
+                      'name to search, select and press Enter to add. Repeat to '
+                      'to add additional members.'),
+        value_type=schema.Choice(vocabulary=u"plone.principalsource.Users",),
         required=True,
+    )
+
+    dexteritytextindexer.searchable('text')
+    form.widget(text="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+    text = schema.Text(
+        title=_(u'Notes'),
+        required=False
+    )
+
+    contactName = schema.TextLine(
+        title=_(u'Contact Person'),
+        required=False
+    )
+
+    contactEmail = schema.TextLine(
+        title=_(u'Contact Person Email'),
+        required=False
+    )
+
+    contactPhone = schema.TextLine(
+        title=_(u'Contact Person Phone'),
+        required=False
     )
