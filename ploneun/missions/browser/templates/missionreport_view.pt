@@ -45,7 +45,7 @@
             <h3 tal:content="mission/title">Title</h3>
             <h3>
               Authors: <span tal:content="structure
-					  view/w/mission_author/render"></span>
+					  view/w/report_author/render"></span>
             </h3>
           </div>
 
@@ -55,7 +55,7 @@
 	  </metal:mission>
 
 	  <h3>Summary of Main Achievements</h3>
-	  <p tal:content="structure view/w/mission_achievements/render"></p>  
+	  <p tal:content="structure view/w/achievements_summary/render"></p>  
 
 	  <h3>Findings</h3>
 	  <p tal:content="structure view/w/mission_findings/render"></p>  
@@ -63,9 +63,12 @@
 	  <h3>Follow-up actions/next steps</h3>
 	  <p tal:content="structure view/w/mission_followup/render"></p>  
 
+      <tal:c condition="context/mission_distribution">
+      <hr/>
 	  <label>Email Distribution List</label><br />
-	  <p tal:content="structure view/w/mission_distribution/render"></p>
-
+      <p tal:content="structure view/w/mission_distribution/render"></p>
+      </tal:c>
+      <hr/>
 	</div>
 
 	<h2>Attachments</h2>

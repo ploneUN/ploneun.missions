@@ -95,6 +95,16 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    form.widget(mission_distribution=AutocompleteMultiFieldWidget)
+    mission_distribution = schema.List(
+        title=_(u'Distribution List'),
+        description=_(u'Enter '
+            'name to search, select and press Enter to add. Repeat to '
+            'to add additional members.'),
+        value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
+        required=False
+    )
+
 class NameFromTitle(grok.Adapter):
     grok.implements(INameFromTitle)
     grok.context(IMissionReport)
