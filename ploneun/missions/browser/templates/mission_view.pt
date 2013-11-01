@@ -22,9 +22,9 @@
 	  <div class="eventDetail">
 	    <h3>When</h3>
 	    <div>
-	      <span tal:content="python: mission.start.strftime('%e %B %Y')"></span>
+	      <span tal:content="python: mission.startDate.strftime('%e %B %Y')"></span>
 	      to <br />
-	      <span tal:content="python: mission.end.strftime('%e %B %Y')"></span>
+	      <span tal:content="python: mission.endDate.strftime('%e %B %Y')"></span>
 	    </div>
 	  </div>
 
@@ -56,26 +56,6 @@
 	    </div>
 	  </tal:where>
 
-	  <tal:id_province tal:condition="mission/id_province">
-            <div class="eventDetail">
-              <h3>Province</h3>
-              <div class="location">
-                <span tal:content="structure
-				   mission_view/w/id_province/render"></span>
-              </div>
-            </div>
-	  </tal:id_province>
-
-          <tal:id_province tal:condition="mission/id_province">
-            <div class="eventDetail">
-              <h3>Province</h3>
-              <div class="location">
-                <span tal:content="structure
-				   mission_view/w/id_province/render"></span>
-              </div>
-            </div>
-          </tal:id_province>
-	  
           <tal:members tal:condition="mission/mission_members">
             <div class="eventDetail">
               <h3>Members</h3>

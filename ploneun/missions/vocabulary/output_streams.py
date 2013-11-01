@@ -16,9 +16,6 @@ class OutputStreams(grok.GlobalUtility):
         'value': u'Legal and Regulatory Frameworks',   
         'title': u'Legal and Regulatory Frameworks',
     },{
-        'value': u'Legal and Regulatory Frameworks',
-        'title': u'Legal and Regulatory Frameworks',
-    },{
         'value': u'Strategic Programs',
         'title': u'Strategic Programs'
     },{

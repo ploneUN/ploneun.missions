@@ -19,7 +19,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.utils import safe_unicode
 
-from ploneun.missions.content.mission import id_provinces
 import p01.vocabulary.country
 
 
@@ -158,9 +157,6 @@ class MailActionExecutor(object):
 
         output_stream = safe_unicode(parent.output_stream)
         output_contribution = safe_unicode(parent.output_contribution.output)
-
-        id_province = id_provinces.getTerm(parent.id_province).title
-
 
         country = p01.vocabulary.country.ISO3166Alpha2CountryVocabulary(parent).getTerm(parent.country).title
 

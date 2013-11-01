@@ -4,6 +4,7 @@ from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from zope.schema.interfaces import IVocabularyFactory
 from zope.component import getUtility
 from z3c.formwidget.query.interfaces import IQuerySource
+from ploneun.missions import _
 
 class MissionScope(grok.GlobalUtility):
     grok.name('ploneun.missions.mission_scope')

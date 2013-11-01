@@ -98,15 +98,6 @@ class IMission(IBasic, IImageScaleTraversable):
         vocabulary='ploneun.missions.mission_scope',
     )
 
-    id_province = schema.Choice(
-        title=_(u'Province'),
-        description=_(u'If Mission Scope is National, please select '
-                      'a province.'),
-        vocabulary=id_provinces,
-        required=False,
-        missing_value = None,
-    )
-
     country = schema.Choice(
         title=_(u'Country'),
         description=_(u'If Mission Scope is International, please select '

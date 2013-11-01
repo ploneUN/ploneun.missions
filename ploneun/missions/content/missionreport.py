@@ -22,9 +22,11 @@ from plone.formwidget.autocomplete import AutocompleteMultiFieldWidget
 from plone.z3cform.textlines.textlines import TextLinesFieldWidget
 from collective.z3cform.widgets.enhancedtextlines import \
     EnhancedTextLinesFieldWidget
-
+from plone.app.content.interfaces import INameFromTitle
+from Acquisition import aq_parent
 
 from ploneun.missions import MessageFactory as _
+from zope.lifecycleevent import IObjectAddedEvent
 
 
 # Interface class; used to define content-type schema.
@@ -78,3 +80,21 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         value_type=schema.TextLine(),
         required=False,
     )
+
+class NameFromTitle(grok.Adapter):
+    grok.implements(INameFromTitle)
+    grok.context(IMissionReport)
+
+    def __init__(self, context):
+        self.context = context
+
+    @property
+    def title(self):
+        return u'Mission Report'
+
+
+@grok.subscribe(IMissionReport, IObjectAddedEvent)
+def mission_report_title(obj, event):
+    parent = aq_parent(obj)
+    obj.title = u'Mission Report : %s' % parent.title
+    obj.reindexObject()
