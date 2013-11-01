@@ -8,6 +8,7 @@
   -->
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
+  <object name="ploneun.missions.missionfacility" meta_type="Dexterity FTI" />
   <object name="ploneun.missions.missionreport" meta_type="Dexterity FTI" />
   <object name="ploneun.missions.mission" meta_type="Dexterity FTI" />
 </object>
