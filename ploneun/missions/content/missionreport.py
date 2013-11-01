@@ -59,23 +59,22 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
             )
 
     mission_followup = RichText(
-        title = _(u'Follow-up actions/next steps'),
-        description = _(u'In point form, include who should be doing '
+            title = _(u'Follow-up actions/next steps'),
+            description = _(u'In point form, include who should be doing '
         'what.')
     )
 
     form.widget(mission_distribution=EnhancedTextLinesFieldWidget)
     mission_distribution = schema.Tuple(
-       title=_(u'Additional Email Distribution List'),
-       description=_(u'Email addresses to which a copy of this '
+        title=_(u'Additional Email Distribution List'),
+        description=_(u'Email addresses to which a copy of this '
            'report should be sent. One email per entry. Click Add  '
             'after each new entry. eg. '
            'username@unorcid.org. Authors, members and '
            'supporting staff are already included and need not '
            'be specified here.'),
-       default=(),
-       missing_value=(),
-       value_type=schema.TextLine(
-           ),
-       required=False,
-       )
+        default=(),
+        missing_value=(),
+        value_type=schema.TextLine(),
+        required=False,
+    )

@@ -4,7 +4,7 @@
    i18n:domain="ploneun.missions" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">missionreport</property>
+  <property name="title" i18n:translate="">Mission Report</property>
   <property name="description"
     i18n:translate="">UN Mission Report</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
@@ -20,7 +20,10 @@
   <property name="schema">ploneun.missions.content.missionreport.IMissionReport</property> 
   <property name="klass">plone.dexterity.content.Container</property>
   <property name="behaviors">
-     <element value="plone.app.content.interfaces.IReindexOnModify" />
+     <element value="plone.multilingualbehavior.interfaces.IDexterityTranslatable"/>
+     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
+     <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer"/>
+     <element value="plone.app.versioningbehavior.behaviors.IVersionable"/>
      <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
      <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
      <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>
