@@ -41,7 +41,7 @@
                     <dt>Add Mission Report</dt>
                     <dd>No Mission Report has been added to this mission yet.
                         Click on <b>
-                            <a href="++add++ploneun.missions.missionreport">
+                            <a tal:attributes="href string:${context/absolute_url}/++add++ploneun.missions.missionreport?form.widgets.IDublinCore.title=${view/missionreport_title}">
                                 Mission Report
                             </a>
                         </b> to add a new draft report.

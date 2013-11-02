@@ -1,6 +1,7 @@
 from five import grok
 from plone.directives import dexterity, form
 from ploneun.missions.content.mission import IMission
+import urllib
 
 grok.templatedir('templates')
 
@@ -25,6 +26,10 @@ class Index(dexterity.DisplayForm):
         contentFilter['portal_type'] = 'ploneun.missions.missionreport'
 
         return bool(context.portal_catalog.queryCatalog(contentFilter))
+
+
+    def missionreport_title(self):
+        return urllib.quote(u'Mission Report : %s' % self.context.title)
 
     def detail_fields(self):
         fields = []
