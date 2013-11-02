@@ -22,7 +22,7 @@ class Index(dexterity.DisplayForm):
 
         contentFilter = {}
         contentFilter['path'] = path
-        contentFilter['portal_type'] = 'ploneun.mission.missionreport'
+        contentFilter['portal_type'] = 'ploneun.missions.missionreport'
 
         return bool(context.portal_catalog.queryCatalog(contentFilter))
 
@@ -68,10 +68,10 @@ class Index(dexterity.DisplayForm):
         })
 
 
-        contact = [self.context.contactName]
+        contact = [self.context.contactName or '']
 
         if self.context.contactEmail:
-            if  self.context.contactName:
+            if self.context.contactName:
                 contact = ['"%s"' % self.context.contactName]
             contact.append('&lt;%s&gt;' % self.context.contactEmail)
 

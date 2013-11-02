@@ -97,6 +97,8 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
 
     mission_distribution = schema.List(
         title=_(u'Distribution List'),
+        description=_(u'Enter additional email, one per line'),
+        value_type=schema.TextLine(),
         required=False
     )
 

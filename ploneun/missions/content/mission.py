@@ -60,7 +60,6 @@ class IMission(IBasic, IImageScaleTraversable):
                       'a country.'),
         vocabulary='ploneun.vocabulary.country',
         required=True,
-        default=u'ID',
         missing_value = None,
     )
 
