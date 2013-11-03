@@ -19,7 +19,7 @@ def populate_calendar(obj, event):
     collection.query = [
         {'i': 'portal_type', 
          'o': 'plone.app.querystring.operation.selection.is', 
-         'v': ['Mission']}, 
+         'v': ['ploneun.missions.mission']}, 
         {'i': 'path', 
          'o': 'plone.app.querystring.operation.string.relativePath',
          'v': '../'}

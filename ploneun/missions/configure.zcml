@@ -19,4 +19,7 @@
 
     <!-- -*- extra stuff goes here -*- -->
 
+    <adapter factory=".indexer.mission_start" name="start"/>
+    <adapter factory=".indexer.mission_end" name="end"/>
+
 </configure>

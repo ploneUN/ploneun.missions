@@ -39,6 +39,7 @@ setup(name='ploneun.missions',
           'ploneun.vocabulary',
           'plone.principalsource',
           'collective.pdfexport',
+          'ploneun.calendar',
       ],
       extras_require={
           'test': [
