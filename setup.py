@@ -38,6 +38,7 @@ setup(name='ploneun.missions',
           'collective.z3cform.widgets',
           'ploneun.vocabulary',
           'plone.principalsource',
+          'collective.pdfexport',
       ],
       extras_require={
           'test': [
