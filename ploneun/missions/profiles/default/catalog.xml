@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+    <column value="ploneun_country"/>
+    <index name="ploneun_country" meta_type="FieldIndex">
+        <indexed_attr value="ploneun_country"/>
+    </index>
+    <column value="ploneun_missionscope"/>
+    <index value="ploneun_missionscope" meta_type="FieldIndex">
+        <indexed_attr value="ploneun_missionscope"/>
+    </index>
+</object>

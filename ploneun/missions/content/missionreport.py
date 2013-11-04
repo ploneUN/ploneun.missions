@@ -27,7 +27,10 @@ from Acquisition import aq_parent
 
 from ploneun.missions import MessageFactory as _
 from zope.lifecycleevent import IObjectAddedEvent
+from collective import dexteritytextindexer
 
+from plone.autoform.interfaces import IFormFieldProvider
+from zope.interface import alsoProvides
 
 # Interface class; used to define content-type schema.
 
@@ -36,13 +39,14 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     UN Mission Report
     """
 
-
+    dexteritytextindexer.searchable('report_outcome')
     report_outcome = schema.TextLine(
         title=_(u'Country / Regional Programme Outcome'),
         description=_(u'Enter outcome code here eg. IDN 101'),
         required=False
     )
 
+    dexteritytextindexer.searchable('report_outcome_text')
     form.widget(report_outcome_text="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
     report_outcome_text = schema.Text(
         title=_(u'Contribution to Outcome'),
@@ -51,6 +55,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    dexteritytextindexer.searchable('report_author')
     form.widget(report_author=AutocompleteMultiFieldWidget)
     report_author= schema.List(
         title=_(u'Author(s)'),
@@ -63,7 +68,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
-
+    dexteritytextindexer.searchable('achievements_summary')
     form.widget(achievements_summary="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
     achievements_summary = schema.Text(
         title=_(u'Achievements Summary'),
@@ -71,6 +76,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    dexteritytextindexer.searchable('mission_findings')
     form.widget(mission_findings="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
     mission_findings = schema.Text(
         title=_(u'Mission Findings'),
@@ -79,6 +85,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    dexteritytextindexer.searchable('mission_followup')
     form.widget(mission_followup="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
     mission_followup = schema.Text(
         title=_(u'Follow-up actions/next steps'),
@@ -87,6 +94,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    dexteritytextindexer.searchable('mission_contact')
     form.widget(mission_contact="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
     mission_contact = schema.Text(
         title=_(u'List of Contacts'),
@@ -95,12 +103,15 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    dexteritytextindexer.searchable('mission_distribution')
     mission_distribution = schema.List(
         title=_(u'Distribution List'),
         description=_(u'Enter additional email, one per line'),
         value_type=schema.TextLine(),
         required=False
     )
+
+alsoProvides(IMissionReport, IFormFieldProvider)
 
 class NameFromTitle(grok.Adapter):
     grok.implements(INameFromTitle)

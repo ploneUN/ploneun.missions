@@ -23,10 +23,11 @@ from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.app.dexterity.behaviors.metadata import IBasic
 
-import p01.vocabulary.country
-
 from ploneun.missions import MessageFactory as _
 from collective import dexteritytextindexer
+
+from plone.autoform.interfaces import IFormFieldProvider
+from zope.interface import alsoProvides
 
 
 # Interface class; used to define content-type schema.
@@ -44,11 +45,13 @@ class IMission(IBasic, IImageScaleTraversable):
                               description=u'Briefly describe the objectives '
                               'of the mission.')
 
+    dexteritytextindexer.searchable('mission_scope')
     mission_scope= schema.Choice(
         title=_(u'Mission Scope'),
         vocabulary='ploneun.missions.mission_scope',
     )
 
+    dexteritytextindexer.searchable('mission_city')
     mission_city = schema.TextLine(
         title=_(u'City'),
         required=False
@@ -71,6 +74,7 @@ class IMission(IBasic, IImageScaleTraversable):
         title=_(u'End date'),
     )
 
+    dexteritytextindexer.searchable('mission_members')
     form.widget(mission_members=AutocompleteMultiFieldWidget)
     mission_members= schema.List(
         title=_(u'Mission Members'),
@@ -88,17 +92,22 @@ class IMission(IBasic, IImageScaleTraversable):
         required=False
     )
 
+    dexteritytextindexer.searchable('contactName')
     contactName = schema.TextLine(
         title=_(u'Contact Person'),
         required=False
     )
 
+    dexteritytextindexer.searchable('contactEmail')
     contactEmail = schema.TextLine(
         title=_(u'Contact Person Email'),
         required=False
     )
 
+    dexteritytextindexer.searchable('contactPhone')
     contactPhone = schema.TextLine(
         title=_(u'Contact Person Phone'),
         required=False
     )
+
+alsoProvides(IMission, IFormFieldProvider)
