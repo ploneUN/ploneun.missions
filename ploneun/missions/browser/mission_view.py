@@ -1,6 +1,7 @@
 from five import grok
 from plone.directives import dexterity, form
 from ploneun.missions.content.mission import IMission
+from ploneun.missions.vocabulary import resolve_value
 import urllib
 
 grok.templatedir('templates')
@@ -64,7 +65,12 @@ class Index(dexterity.DisplayForm):
         location = []
         if self.context.mission_city:
             location.append(self.context.mission_city)
-        location.append(self.context.country)
+        if self.context.country:
+            country = resolve_value(self.context, 
+                self.context.country,
+                'ploneun.vocabulary.country'
+            )
+            location.append(country)
 
         fields.append({
             'id': 'location',
