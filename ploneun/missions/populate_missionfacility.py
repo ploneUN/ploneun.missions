@@ -125,6 +125,10 @@ def populate_calendar(obj, event):
     collection = contentapi.create(obj, 'Topic', id='search-missions',
                                     title=u'Search Missions')
 
+    collection = contentapi.create(obj, 'Topic', id='search-missionreports',
+                                    title=u'Search Mission Reports')
+
+
     obj.reindexObject()
 
     request = getRequest()
