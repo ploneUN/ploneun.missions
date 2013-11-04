@@ -11,3 +11,6 @@ def setupVarious(context):
     portal = context.getSite()
 
     # do anything here
+
+    portal.portal_catalog.reindexIndex('ploneun_missionscope', portal.REQUEST)
+    portal.portal_catalog.reindexIndex('ploneun_country', portal.REQUEST)

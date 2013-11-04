@@ -5,7 +5,7 @@
         <indexed_attr value="ploneun_country"/>
     </index>
     <column value="ploneun_missionscope"/>
-    <index value="ploneun_missionscope" meta_type="FieldIndex">
+    <index name="ploneun_missionscope" meta_type="FieldIndex">
         <indexed_attr value="ploneun_missionscope"/>
     </index>
 </object>
