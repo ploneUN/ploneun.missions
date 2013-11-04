@@ -25,5 +25,7 @@
 
     <adapter factory=".indexer.mission_start" name="start"/>
     <adapter factory=".indexer.mission_end" name="end"/>
+    <adapter factory=".indexer.mission_country" name="ploneun_country"/>
+
 
 </configure>

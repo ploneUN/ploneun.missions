@@ -49,6 +49,21 @@ def populate_calendar(obj, event):
 
     collection.reindexObject()
 
+    # create all mission reports collection
+
+    collection = contentapi.create(obj, 'Collection', id='all-missionreports',
+                                    title=u'All Mission Reports')
+
+
+    collection.query = [
+        {'i': 'portal_type', 
+         'o': 'plone.app.querystring.operation.selection.is', 
+         'v': ['ploneun.missions.missionreport']}, 
+        {'i': 'path', 
+         'o': 'plone.app.querystring.operation.string.relativePath',
+         'v': '../'}
+    ]
+
     # create my missions collection
     collection = contentapi.create(obj, 'Collection', id='my-missions',
             title=u'My Missions')
@@ -67,9 +82,48 @@ def populate_calendar(obj, event):
 
     collection.reindexObject()
 
+    # create my mission reports collection
+    collection = contentapi.create(obj, 'Collection', id='my-missionreports',
+            title=u'My Mission Reports')
+
+    collection.query = [
+        {'i': 'portal_type',
+         'o': 'plone.app.querystring.operation.selection.is',
+         'v': ['ploneun.missions.mission']},
+        {'i': 'path',
+         'o': 'plone.app.querystring.operation.string.relativePath',
+         'v': '../'},
+        {'i': 'Creator', 
+         'o': 'plone.app.querystring.operation.string.currentUser'}
+    ]
+
+    collection.reindexObject()
+
+    # create my mission reports drafts collection
+
+    collection = contentapi.create(obj, 'Collection',
+            id='my-missionreport-drafts',
+            title=u'My Mission Report Drafts')
+
+    collection.query = [
+        {'i': 'portal_type',
+         'o': 'plone.app.querystring.operation.selection.is',
+         'v': ['ploneun.missions.missionreport']},
+        {'i': 'path',
+         'o': 'plone.app.querystring.operation.string.relativePath',
+         'v': '../'},
+        {'i': 'Creator', 
+         'o': 'plone.app.querystring.operation.string.currentUser'},
+        {'i': 'review_state', 
+         'o': 'plone.app.querystring.operation.selection.is', 
+         'v': ['internal', 'private']}
+    ]
+
+    collection.reindexObject()
+
     # create search collection
-    collection = contentapi.create(obj, 'Topic', id='search',
-                                    title=u'Search')
+    collection = contentapi.create(obj, 'Topic', id='search-missions',
+                                    title=u'Search Missions')
 
     obj.reindexObject()
 

@@ -59,13 +59,29 @@ class Renderer(base.Renderer):
             'title': _('View All Missions (Table)'),
             'url': '%s/all-missions/missiontravel' % url
         },{
+            'id': 'view-mission-reports',
+            'title': _('View All Mission Reports'),
+            'url': '%s/all-missionreports' % url
+        },{
             'id': 'view-my-missions',
             'title': _('My Missions'),
             'url': '%s/my-missions' % url
         },{
-            'id': 'search',
+            'id': 'view-my-missionreport',
+            'title': _('My Mission Reports'),
+            'url': '%s/my-missionreports' % url
+        },{
+            'id': 'view-my-missionreport-drafts',
+            'title': _('My Mission Report Drafts'),
+            'url': '%s/my-missionreport-drafts' % url
+        },{
+            'id': 'search-missions',
             'title': _(u'Search Missions'),
-            'url': '%s/search' % url
+            'url': '%s/search-missions' % url
+        },{
+            'id': 'search-missionreports',
+            'title': _(u'Search Mission Reports'),
+            'url': '%s/search-missionreports' % url,
         }]
 
 class AddForm(base.NullAddForm):

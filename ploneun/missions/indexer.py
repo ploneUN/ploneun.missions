@@ -12,3 +12,11 @@ def mission_start(obj):
 def mission_end(obj):
     if obj.endDate:
         return DateTime(obj.endDate)
+
+@indexer(IMission)
+def mission_country(obj):
+    return obj.country
+
+@indexer(IMission)
+def mission_country(obj):
+    return obj.country
