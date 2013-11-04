@@ -4,7 +4,6 @@ from zope.app.container.interfaces import IObjectAddedEvent
 from ploneun.missions.content.mission_facility import IMissionFacility
 from five import grok
 
-
 index_text = '''
 <p>To enter your missions into the calendar, 
 simply click on the "Add Mission" in the box on the left side and follow 
@@ -69,20 +68,9 @@ def populate_calendar(obj, event):
     collection.reindexObject()
 
     # create search collection
-    collection = contentapi.create(obj, 'Collection', id='search',
+    collection = contentapi.create(obj, 'Topic', id='search',
                                     title=u'Search')
 
-
-    collection.query = [
-        {'i': 'portal_type', 
-         'o': 'plone.app.querystring.operation.selection.is', 
-         'v': ['ploneun.missions.mission']}, 
-        {'i': 'path', 
-         'o': 'plone.app.querystring.operation.string.relativePath',
-         'v': '../'}
-    ]
-
-    collection.reindexObject()
     obj.reindexObject()
 
     request = getRequest()
