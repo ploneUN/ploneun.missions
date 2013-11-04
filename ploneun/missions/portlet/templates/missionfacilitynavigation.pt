@@ -1,0 +1,25 @@
+<dl class="portlet portletMissionFacilityNavigation"
+    i18n:domain="ploneun.missions">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        Mission Facility Navigation
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem">
+        <ul>
+            <li tal:repeat="item view/links">
+                <a tal:attributes="href item/url" tal:content="item/title">
+                    
+                </a>
+            </li>
+        </ul>
+    </dd>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

@@ -2,5 +2,10 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
+ <portlet 
+   addview="ploneun.missions.portlet.MissionFacilityNavigation"
+   title="Mission Facility Navigation"
+   description="Navigation for Mission Facilities"/>
+
 
 </portlets>
