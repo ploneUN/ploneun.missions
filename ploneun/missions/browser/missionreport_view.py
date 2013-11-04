@@ -14,3 +14,21 @@ class Index(dexterity.DisplayForm):
 
     def mission(self):
         return aq_parent(self.context)
+
+    def attachments(self):
+        brains = self.context.portal_catalog({
+            'portal_type': 'File',
+            'path': {
+                'query': '/'.join(self.context.getPhysicalPath()),
+                'depth': 1
+            }
+        })
+
+        result = []
+        for brain in brains:
+            obj = brain.getObject()
+            macro = obj.widget('file', mode='view')
+            result.append({
+                'widget-macro': macro
+            })
+        return result

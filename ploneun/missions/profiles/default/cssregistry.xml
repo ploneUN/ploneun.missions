@@ -3,4 +3,20 @@
 
     <!-- -*- extra stuff goes here -*- -->
 
+
+ <stylesheet title=""
+     id="++resource++ploneun.missions/print.css"
+    media="screen" rel="stylesheet" rendering="import"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""/>
+
+
+
+ <stylesheet title=""
+     id="++resource++ploneun.missions/style.css"
+    media="print" rel="stylesheet" rendering="import"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""/>
+
+
 </object>

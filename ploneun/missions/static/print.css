@@ -1,0 +1,8 @@
+/* print.css */
+
+.ploneun-missions-missionreport_view h1,
+.ploneun-missions-missionreport_view h2,
+.ploneun-missions-missionreport_view h3 {
+    text-decoration:underline;
+}
+

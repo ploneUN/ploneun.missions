@@ -17,6 +17,10 @@
     <include package=".portlet"/>
     <include package=".contentrule"/>
 
+    <browser:resourceDirectory
+        name="ploneun.missions"
+        directory="static"/>
+
     <!-- -*- extra stuff goes here -*- -->
 
     <adapter factory=".indexer.mission_start" name="start"/>

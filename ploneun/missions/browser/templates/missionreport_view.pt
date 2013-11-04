@@ -9,7 +9,7 @@
 
     <metal:main fill-slot="content-core">
       <metal:content-core define-macro="content-core">
-
+    <div class="ploneun-missions-missionreport_view">
 	<style>
 	  div.mission-report-title h1 { text-align: center;
           font-size: 24px;}
@@ -72,7 +72,7 @@
 	</div>
 
 	<h2>Attachments</h2>
-	<p class="discreet">
+	<p class="discreet visualNoPrint">
         <a tal:attributes="href string:${context/absolute_url}/createObject?type_name=File">
             Click here to add file attachments </a>.
       Files are also emailed to authors, mission members,
@@ -80,14 +80,16 @@
 	  files, add it to a project or partner folder, and add a link in your
 	  mission report, rather than as an attachment here.
 	</p>
-
-	<fieldset id="folder-listing">
-          <legend>Contents</legend>
-          <tal:block define="listing_macro context/folder_listing/macros/listing">
-            <metal:use_macro use-macro="listing_macro" />
-          </tal:block>
-	</fieldset>
-
+    
+    <ul tal:define="attachments view/attachments"
+        tal:condition="attachments">
+    <tal:attachments repeat="attachment attachments">
+        <li>
+            <metal:block use-macro="attachment/widget-macro"></metal:block>
+        </li>
+    </tal:attachments>
+    </ul>
+    </div>
       </metal:content-core>
     </metal:main>
 
