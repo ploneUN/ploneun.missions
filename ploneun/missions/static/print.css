@@ -6,3 +6,24 @@
     text-decoration:underline;
 }
 
+.ploneun-missions-missiontravel_view .country-row {
+    background: #eee;
+}
+
+.ploneun-missions-missiontravel_view .missiontravel-table {
+    font-size:10px;
+}
+
+.ploneun-missions-missiontravel_view .markday {
+    background: #aaa;
+    text-align: center;
+    font-size: 8px;
+}
+
+.ploneun-missions-missiontravel_view .day-cell {
+    width:15px;
+    font-size:10px;
+    padding-left:0;
+    padding-right:0;
+}
+

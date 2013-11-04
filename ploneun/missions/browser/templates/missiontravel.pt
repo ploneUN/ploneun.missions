@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="ploneun.missions"
+    metal:use-macro="context/main_template/macros/master">
+    <head>
+    </head>
+    <body>
+        <div metal:fill-slot="content-core">
+            <div metal:define-macro="content-core">
+                <div class="ploneun-missions-missiontravel_view">
+                    <form tal:attributes="action string:${request/getURL}" 
+                        method="GET">
+                        <input type="hidden" name="month" tal:attributes="value view/month"/>
+                    </form>
+                    <table width="100%" class="missiontravel-table listing nosort">
+                        <tr>
+                            <thead>
+                                <th>
+                                    <form tal:attributes="action request/getURL" method="GET">
+                                        <select name="month">
+                                            <option tal:repeat="m view/months" 
+                                                tal:attributes="value m/value;
+                                                selected m/selected"
+                                                tal:content="m/name"></option>
+                                        </select>
+                                        <input class="visualNoPrint" type="submit" value="Update"/>
+                                    </form>
+                                </th>
+                                <th style="text-align:center;padding-left:0;padding-right:0" 
+                                    class="day-cell"
+                                    tal:repeat="day view/days"><b tal:content="day"></b></th>
+                            </thead>
+                        </tr>
+                        <tal:r repeat="location view/countries">
+                            <tr class="country-row">
+                                <td><b tal:content="location/name"></b></td>
+                                <td tal:repeat="day view/days"></td>
+                            </tr>
+                            <tal:r repeat="person location/people">
+                                <tr tal:define="isEven repeat/person/even"
+                                    tal:attributes="class python: 'even' if isEven else 'odd'">
+                                    <td tal:content="person/name"></td> 
+                                    <tal:r repeat="day view/days">
+                                        <td class="day-cell markday" tal:condition="python:day in person['days']">
+                                            X
+                                        </td>
+                                        <td class="day-cell" tal:condition="python:not (day in person['days'])">
+                                        </td>
+                                    </tal:r>
+                                </tr>
+                            </tal:r>
+                        </tal:r>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

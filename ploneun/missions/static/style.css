@@ -5,3 +5,20 @@
 .ploneun-missions-missionreport_view h3 {
     text-decoration:underline;
 }
+
+.ploneun-missions-missiontravel_view .country-row {
+    background: #eee;
+}
+
+.ploneun-missions-missiontravel_view .markday {
+    background: #aaa;
+    text-align: center;
+    font-size: 8px;
+}
+
+.ploneun-missions-missiontravel_view .day-cell {
+    width:5px;
+    font-size:10px;
+    padding-left:0;
+    padding-right:0;
+}
