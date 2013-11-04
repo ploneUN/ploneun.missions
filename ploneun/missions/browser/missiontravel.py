@@ -8,7 +8,7 @@ import calendar
 grok.templatedir('templates')
 
 class MissionTravel(grok.View):
-    grok.context(IContentish)
+    grok.context(ISolgemaFullcalendarMarker)
     grok.name('missiontravel')
     grok.require('zope2.View')
     grok.template('missiontravel')
