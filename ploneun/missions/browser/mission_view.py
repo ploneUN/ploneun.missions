@@ -78,6 +78,16 @@ class Index(dexterity.DisplayForm):
             'render': ', '.join(location)
         })
 
+        themes = getattr(self.context, 'ilo_themes', [])
+        if themes:
+            fields.append({
+                'id': 'themes',
+                'title': 'Themes',
+                'render': '<ul>%s</ul>' % ''.join([
+                    '<li>%s</li>' % i for i in themes
+                ])
+            })
+
 
         contact = [self.context.contactName or '']
 
