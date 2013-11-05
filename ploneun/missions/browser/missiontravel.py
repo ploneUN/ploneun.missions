@@ -4,6 +4,7 @@ from Solgema.fullcalendar.interfaces import ISolgemaFullcalendarMarker
 from ploneun.missions.vocabulary import resolve_value
 from datetime import datetime
 import calendar
+from plone import api
 
 grok.templatedir('templates')
 
@@ -70,7 +71,8 @@ class MissionTravel(grok.View):
                 continue
             r = []
             for person, info in sorted(people.items(), key=lambda x:x[0]):
-                o = {'name': person}
+                fullname = api.user.get(username=person).getProperty('fullname')
+                o = {'name': fullname}
                 o.update(info)
                 r.append(o)
 
