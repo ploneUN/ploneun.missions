@@ -29,6 +29,7 @@ class Index(dexterity.DisplayForm):
             obj = brain.getObject()
             macro = obj.widget('file', mode='view')
             result.append({
+                'widget-obj': obj,
                 'widget-macro': macro
             })
         return result

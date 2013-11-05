@@ -84,7 +84,8 @@
     <ul tal:define="attachments view/attachments"
         tal:condition="attachments">
     <tal:attachments repeat="attachment attachments">
-        <li>
+        <li tal:define="context nocall:attachment/widget-obj;
+                        here nocall:attachment/widget-obj">
             <metal:block use-macro="attachment/widget-macro"></metal:block>
         </li>
     </tal:attachments>
