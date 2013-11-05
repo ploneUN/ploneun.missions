@@ -30,6 +30,7 @@
      <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
      <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
+     <element value="ilo.extenders.behavior.ilotheme.IILOTheme"/>
    </property>
 
   <!-- View information -->
