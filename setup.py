@@ -40,6 +40,7 @@ setup(name='ploneun.missions',
           'plone.principalsource',
           'collective.pdfexport',
           'ploneun.calendar',
+          'collective.wtf==1.0b8',
       ],
       extras_require={
           'test': [

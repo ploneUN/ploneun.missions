@@ -1,0 +1,21 @@
+[Workflow]
+Id:,mission_intranet_workflow
+Title:,Mission Intranet Workflow
+Description:,"- A single intranet workflow where content is only accessible if you are logged in. Only one state ""Internally Published"""
+Initial state:,internally_published
+Type:,Workflow
+State variable:,review_state
+
+[State]
+Id:,internally_published
+Title:,Internally published
+Description:,"Published and visible to intranet users, not editable by the owner."
+Transitions,"reject, retract, publish_externally"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Authenticated,Member,Site Administrator
+Access contents information,N,N,Y,Y,Y,Y,Y,N,Y,Y
+View,N,N,Y,Y,Y,Y,Y,Y,Y,Y
+Modify portal content,N,N,Y,Y,N,Y,N,N,N,Y
+Change portal events,N,N,Y,Y,N,Y,N,N,N,Y
+Delete objects,N,N,Y,Y,N,Y,N,N,N,Y
+List folder contents,Y,N,Y,Y,Y,Y,Y,N,Y,Y
+
