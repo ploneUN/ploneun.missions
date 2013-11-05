@@ -78,6 +78,16 @@ class Index(dexterity.DisplayForm):
             'render': ', '.join(location)
         })
 
+        regions = getattr(self.context, 'ilo_regions', [])
+        if regions:
+            fields.append({
+                'id': 'regions',
+                'title': 'Regions',
+                'render': '<ul>%s</ul>' % ''.join([
+                    '<li>%s</li>' % i for i in regions
+                ])
+            })
+
         themes = getattr(self.context, 'ilo_themes', [])
         if themes:
             fields.append({
