@@ -34,3 +34,8 @@ def missionreport_country(obj):
 def missionreport_ilo_themes(obj):
     mission = get_mission(obj)
     return mission.ilo_themes
+
+@indexer(IMissionReport)
+def missionreport_ilo_regions(obj):
+    mission = get_mission(obj)
+    return mission.ilo_regions
