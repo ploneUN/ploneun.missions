@@ -28,5 +28,7 @@
     <adapter factory=".indexer.mission_country" name="ploneun_country"/>
     <adapter factory=".indexer.missionreport_country" name="ploneun_country"/>
     <adapter factory=".indexer.missionreport_ilo_themes" name="ilo_themes"/>
+    <adapter factory=".indexer.missionreport_ilo_regions" name="ilo_regions"/>
+
 
 </configure>
