@@ -1,7 +1,7 @@
 from five import grok
 from plone.directives import dexterity, form
 from ploneun.missions.content.missionreport import IMissionReport
-
+from zope.pagetemplate.pagetemplate import PageTemplate
 from Acquisition import aq_parent
 
 grok.templatedir('templates')
@@ -23,13 +23,19 @@ class Index(dexterity.DisplayForm):
                 'depth': 1
             }
         })
-
+        pt = PageTemplate()
+        pt.write('<metal:macro use-macro="widgetmacro"></metal:macro>')
         result = []
         for brain in brains:
             obj = brain.getObject()
             macro = obj.widget('file', mode='view')
-            result.append({
-                'widget-obj': obj,
-                'widget-macro': macro
+            widget = pt.pt_render({
+                'context': obj,
+                'widgetmacro': macro,
+                'here': obj,
+                'accessor': obj.getFile,
+                'field': obj.getField('file'),
+                'fieldName': 'file'
             })
+            result.append(widget)
         return result
