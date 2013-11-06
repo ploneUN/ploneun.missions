@@ -31,6 +31,11 @@ def populate_calendar(obj, event):
     index.reindexObject()
     obj.setDefaultPage('index')
 
+    # create container for missions
+
+    mission_container = contentapi.create(obj, 'Folder', id='missions',
+            title=u'Missions')
+
     # create all missions collection
     collection = contentapi.create(obj, 'Collection', id='all-missions',
                                     title=u'All Missions')
@@ -44,7 +49,7 @@ def populate_calendar(obj, event):
          'v': ['ploneun.missions.mission']}, 
         {'i': 'path', 
          'o': 'plone.app.querystring.operation.string.relativePath',
-         'v': '../'}
+         'v': '../missions'}
     ]
 
     collection.reindexObject()
@@ -61,7 +66,7 @@ def populate_calendar(obj, event):
          'v': ['ploneun.missions.missionreport']}, 
         {'i': 'path', 
          'o': 'plone.app.querystring.operation.string.relativePath',
-         'v': '../'}
+         'v': '../missions'}
     ]
 
     # create my missions collection
@@ -75,7 +80,7 @@ def populate_calendar(obj, event):
          'v': ['ploneun.missions.mission']},
         {'i': 'path',
          'o': 'plone.app.querystring.operation.string.relativePath',
-         'v': '../'},
+         'v': '../missions'},
         {'i': 'Creator', 
          'o': 'plone.app.querystring.operation.string.currentUser'}
     ]
@@ -92,7 +97,7 @@ def populate_calendar(obj, event):
          'v': ['ploneun.missions.mission']},
         {'i': 'path',
          'o': 'plone.app.querystring.operation.string.relativePath',
-         'v': '../'},
+         'v': '../missions'},
         {'i': 'Creator', 
          'o': 'plone.app.querystring.operation.string.currentUser'}
     ]
@@ -111,7 +116,7 @@ def populate_calendar(obj, event):
          'v': ['ploneun.missions.missionreport']},
         {'i': 'path',
          'o': 'plone.app.querystring.operation.string.relativePath',
-         'v': '../'},
+         'v': '../missions'},
         {'i': 'Creator', 
          'o': 'plone.app.querystring.operation.string.currentUser'},
         {'i': 'review_state', 

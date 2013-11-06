@@ -49,7 +49,7 @@ class Renderer(base.Renderer):
         return [{
             'id': 'add-mission',
             'title': _('Add Mission'),
-            'url': '%s/++add++ploneun.missions.mission' % url
+            'url': '%s/missions/++add++ploneun.missions.mission' % url
         },{
             'id': 'view-all',
             'title': _('View All Missions'),

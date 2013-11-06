@@ -16,6 +16,7 @@
       <element value="Collection"/>
       <element value="Document"/>
       <element value="Topic"/>
+      <element value="Folder"/>
   </property>
   <property name="allow_discussion">False</property>
 
