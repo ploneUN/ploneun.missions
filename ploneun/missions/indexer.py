@@ -33,6 +33,12 @@ def mission_has_missionreport(obj):
     return False
 
 @indexer(IMissionReport)
+def missionreport_description(obj):
+    mission = get_mission(obj)
+    return mission.Description()
+
+
+@indexer(IMissionReport)
 def missionreport_country(obj):
     mission = get_mission(obj)
     return mission.country

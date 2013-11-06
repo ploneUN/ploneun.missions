@@ -39,6 +39,11 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     UN Mission Report
     """
 
+    title = schema.TextLine(
+        title=u'Title',
+        required=True
+    )
+
     dexteritytextindexer.searchable('report_outcome')
     report_outcome = schema.TextLine(
         title=_(u'Country / Regional Programme Outcome'),
@@ -133,9 +138,3 @@ class NameFromTitle(grok.Adapter):
     def title(self):
         return u'Mission Report'
 
-
-@grok.subscribe(IMissionReport, IObjectAddedEvent)
-def mission_report_title(obj, event):
-    parent = aq_parent(obj)
-    obj.title = u'Mission Report : %s' % parent.title
-    obj.reindexObject()
