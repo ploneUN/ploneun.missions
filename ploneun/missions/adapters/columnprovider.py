@@ -35,7 +35,7 @@ class MissionColumnProvider(grok.Adapter):
         return [
             '%s - %s' % (item.start.strftime('%d %b'),
                             item.end.strftime('%d %b')),
-            '<a href="%s">%s</a>' % (item.getURL(), item.Title()),
+            '<a href="%s">%s</a>' % (item.getURL(), item.Title),
             ', '.join(location),
             item_obj.contactName
         ]
