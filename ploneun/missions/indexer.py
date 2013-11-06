@@ -25,6 +25,13 @@ def mission_end(obj):
 def mission_country(obj):
     return obj.country
 
+@indexer(IMission)
+def mission_has_missionreport(obj):
+    for i in obj.values():
+        if IMissionReport.providedBy(i):
+            return True
+    return False
+
 @indexer(IMissionReport)
 def missionreport_country(obj):
     mission = get_mission(obj)
