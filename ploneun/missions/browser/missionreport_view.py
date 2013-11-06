@@ -62,19 +62,22 @@ class Index(dexterity.DisplayForm):
                 'depth': 1
             }
         })
-        pt = PageTemplate()
-        pt.write('<metal:macro use-macro="widgetmacro"></metal:macro>')
+
         result = []
         for brain in brains:
             obj = brain.getObject()
-            macro = obj.widget('file', mode='view')
-            widget = pt.pt_render({
-                'context': obj,
-                'widgetmacro': macro,
-                'here': obj,
-                'accessor': obj.getFile,
-                'field': obj.getField('file'),
-                'fieldName': 'file'
+            unit = obj.getFile()
+            icon = unit.getBestIcon()
+            filename = unit.filename
+            result.append({
+                'icon': icon,
+                'filename': filename,
+                'obj': obj
             })
-            result.append(widget)
         return result
+
+    def is_draft(self):
+        state = api.content.get_state(self.context)
+        if state in ['private']:
+            return True
+        return False

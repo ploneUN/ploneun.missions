@@ -10,7 +10,7 @@ from email.MIMEText import MIMEText
 from email import Encoders
 from zope.component.interfaces import ComponentLookupError
 from Products.CMFPlone.utils import safe_unicode
-
+from plone import api
 
 @grok.subscribe(IMissionReport, IAfterTransitionEvent)
 def send_distribution_list(obj, event):
@@ -105,6 +105,12 @@ def send_distribution_list(obj, event):
 
     #send email
     for recipient in filtered_email:
+        # skip broken recipients
+        if not recipient:
+            continue
+        if '@' not in recipient:
+            continue
+
         del msg['To']
         msg['To'] = recipient
         mailhost.send(msg.as_string())
