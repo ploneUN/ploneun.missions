@@ -39,12 +39,7 @@ class Index(dexterity.DisplayForm):
         mtool = self.context.portal_membership
         for member in self.context.mission_members:
             m = mtool.getMemberById(member)
-            members.append(
-                '"%s" &lt;%s&gt;' % (
-                    m.getProperty('fullname'),
-                    m.getProperty('email')
-                )
-            )
+            members.append(m.getProperty('fullname'))
 
         fields.append({
             'id': 'members',

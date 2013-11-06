@@ -54,19 +54,15 @@
 	  <metal:mission use-macro="mission/view/macros/mission">
 	  </metal:mission>
 
-	  <h3>Summary of Main Achievements</h3>
-	  <p tal:content="structure view/w/achievements_summary/render"></p>  
+      <tal:block repeat="field view/detail_fields">
+          <h3 tal:content="field/title"></h3>
+          <div tal:content="structure field/render"></div>
+      </tal:block>
 
-	  <h3>Findings</h3>
-	  <p tal:content="structure view/w/mission_findings/render"></p>  
-
-	  <h3>Follow-up actions/next steps</h3>
-	  <p tal:content="structure view/w/mission_followup/render"></p>  
-
-      <tal:c condition="context/mission_distribution">
+      <tal:c condition="view/distribution_emails">
       <hr/>
 	  <label>Email Distribution List</label><br />
-      <p tal:content="structure view/w/mission_distribution/render"></p>
+      <p tal:content="view/distribution_emails"></p>
       </tal:c>
       <hr/>
 	</div>

@@ -104,11 +104,20 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     )
 
     dexteritytextindexer.searchable('mission_distribution')
+    form.widget(mission_distribution=AutocompleteMultiFieldWidget)
     mission_distribution = schema.List(
-        title=_(u'Distribution List'),
+        title=_(u'Distribution List (Members)'),
         description=_(u'Enter additional email, one per line'),
-        value_type=schema.TextLine(),
+        value_type=schema.Choice(vocabulary='plone.principalsource.Users'),
         required=False
+    )
+
+    dexteritytextindexer.searchable('mission_distribution_others')
+    mission_distribution_others = schema.List(
+        title=_(u'Distribution List (Others)'),
+        description=_(u'Enter additional email, one per line'),
+        required=False,
+        value_type=schema.TextLine()
     )
 
 alsoProvides(IMissionReport, IFormFieldProvider)
