@@ -4,6 +4,7 @@ from ploneun.missions.content.mission import IMission
 from ploneun.missions.content.missionreport import IMissionReport
 from DateTime import DateTime
 from Acquisition import aq_chain
+from plone import api
 
 def get_mission(obj):
     for i in aq_chain(obj):
@@ -29,7 +30,8 @@ def mission_country(obj):
 def mission_has_missionreport(obj):
     for i in obj.values():
         if IMissionReport.providedBy(i):
-            return True
+            if api.content.get_state(i) != 'private':
+                return True
     return False
 
 @indexer(IMissionReport)
@@ -52,3 +54,12 @@ def missionreport_ilo_themes(obj):
 def missionreport_ilo_regions(obj):
     mission = get_mission(obj)
     return mission.ilo_regions
+
+@indexer(IMissionReport)
+def missionreport_missionscope(obj):
+    mission = get_mission(obj)
+    return mission.mission_scope
+
+@indexer(IMission)
+def mission_missionscope(obj):
+    return obj.mission_scope

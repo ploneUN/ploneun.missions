@@ -31,7 +31,8 @@
     <adapter factory=".indexer.missionreport_ilo_themes" name="ilo_themes"/>
     <adapter factory=".indexer.missionreport_ilo_regions" name="ilo_regions"/>
     <adapter factory=".indexer.mission_has_missionreport" name="ploneun_has_missionreport"/>
-
+    <adapter factory=".indexer.mission_missionscope" name="ploneun_missionscope"/>
+    <adapter factory=".indexer.missionreport_missionscope" name="ploneun_missionscope"/>
 
 
 </configure>
