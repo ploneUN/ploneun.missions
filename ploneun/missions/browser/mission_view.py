@@ -44,7 +44,7 @@ class Index(dexterity.DisplayForm):
         fields.append({
             'id': 'members',
             'title': 'Mission Members',
-            'render': ('<ul>%s</ul>' % ''.join(['<li>%s</li>' % i for i in (
+            'render': (''.join(['<div>%s</div>' % i for i in (
                 members)])) if members else ''
         })
 
@@ -78,8 +78,8 @@ class Index(dexterity.DisplayForm):
             fields.append({
                 'id': 'regions',
                 'title': 'Regions',
-                'render': '<ul>%s</ul>' % ''.join([
-                    '<li>%s</li>' % i for i in regions
+                'render':  ''.join([
+                    '<div>%s</div>' % i for i in regions
                 ])
             })
 
@@ -88,8 +88,8 @@ class Index(dexterity.DisplayForm):
             fields.append({
                 'id': 'themes',
                 'title': 'Themes',
-                'render': '<ul>%s</ul>' % ''.join([
-                    '<li>%s</li>' % i for i in themes
+                'render': ''.join([
+                    '<div>%s</div>' % i for i in themes
                 ])
             })
 

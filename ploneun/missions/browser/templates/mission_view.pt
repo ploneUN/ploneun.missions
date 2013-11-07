@@ -15,22 +15,17 @@
                     mission_view nocall:context/view">
 
                     <metal:mission define-macro="mission">
-
-                        <div class="evenDetails vcard">
-                            <h2>Mission Details</h2>
-
-                            <tal:r repeat="field mission_view/detail_fields">
-                                <div class="eventDetail">
-                                <h3 tal:content="field/title"></h3>
-                                <div tal:attributes="class string:field-${field/id}"
+                        <table class="mission-details">
+                            <tr>
+                                <th colspan="2" class="header">Mission Details</th>
+                            </tr>
+                            <tr tal:repeat="field mission_view/detail_fields">
+                                <th tal:content="field/title"></th>
+                                <td tal:attributes="class string:field-${field/id}"
                                     tal:content="structure field/render">
-                                    
-                                </div>
-                                </div>
-                            </tal:r>
-
-                        </div>
-
+                                </td>
+                            </tr>
+                        </table>
                     </metal:mission>
 
                 </div> 

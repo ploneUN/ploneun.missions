@@ -26,3 +26,26 @@
 .ploneun-missions-missiontravel_view .person-row {
     border-top: 1px solid rgb(221, 221, 221);
 }
+
+.mission-details {
+    float:right;
+    padding:5px;
+    width:300px;
+    border:1px solid #eee;
+    margin-top:20px;
+}
+
+.mission-details td,
+.mission-details th {
+    padding:8px;
+}
+
+.mission-details th {
+    width:100px;
+    text-align:right;
+}
+
+.mission-details th.header {
+    background:#eee;
+    text-align:center;
+}
