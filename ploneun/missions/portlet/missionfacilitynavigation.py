@@ -75,6 +75,10 @@ class Renderer(base.Renderer):
             'title': _('My Mission Report Drafts'),
             'url': '%s/my-missionreport-drafts' % url
         },{
+            'id': 'view-my-missions-without-reports',
+            'title': _('My Missions Without Reports'),
+            'url': '%s/my-missions-without-reports',
+        },{
             'id': 'search-missions',
             'title': _(u'Search Missions'),
             'url': '%s/search-missions' % url
