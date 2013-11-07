@@ -11,6 +11,7 @@ from email import Encoders
 from zope.component.interfaces import ComponentLookupError
 from Products.CMFPlone.utils import safe_unicode
 from plone import api
+from zope.component.hooks import getSite
 
 @grok.subscribe(IMissionReport, IAfterTransitionEvent)
 def send_distribution_list(obj, event):
@@ -57,22 +58,16 @@ def send_distribution_list(obj, event):
     msg['Subject'] = subject
     msg['From'] = source
 
-    body = """Mission Objective: %(description)s
+    body = """You can view the full report online at:
 
+    %(url)s
 
-    The attached Mission Report, and supporting documents has been submitted by %(creator)s.
-
-
-    You can view the full report online at %(url)s
-
-
-    ----------------------------------------
-    This is a system message.
+    --
+    This is a system message from %(site_name)s.
 
     """ % {
-        'description': obj.description,
-        'creator': creator_full_name,
         'url': obj.absolute_url(),
+        'site_name': getSite().title
     }
 
     body_safe = body.encode('utf-8')
