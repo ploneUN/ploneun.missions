@@ -77,7 +77,7 @@ class Renderer(base.Renderer):
         },{
             'id': 'view-my-missions-without-reports',
             'title': _('My Missions Without Reports'),
-            'url': '%s/my-missions-without-reports',
+            'url': '%s/my-missions-without-reports' % url,
         },{
             'id': 'search-missions',
             'title': _(u'Search Missions'),
