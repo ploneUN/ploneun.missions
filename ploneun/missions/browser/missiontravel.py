@@ -55,6 +55,7 @@ class MissionTravel(grok.View):
             country = obj.country
             data.setdefault(country,  {})
             days = self._extract_days(item.start, item.end, year, month)
+            days = [(day, obj)for day in days]
             members = obj.mission_members or []
             for member in members:
                 data[country].setdefault(member, {})

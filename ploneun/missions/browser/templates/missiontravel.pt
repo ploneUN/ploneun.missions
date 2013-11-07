@@ -40,14 +40,17 @@
                                 <td tal:repeat="day view/days"></td>
                             </tr>
                             <tal:r repeat="person location/people">
-                                <tr tal:define="isEven repeat/person/even"
-                                    tal:attributes="class python: 'even' if isEven else 'odd'">
+                                <tr class="person-row">
                                     <td tal:content="person/name"></td> 
                                     <tal:r repeat="day view/days">
-                                        <td class="day-cell markday" tal:condition="python:day in person['days']">
-                                            X
+                                        <td class="day-cell markday"
+                                            tal:condition="python:day in dict(person['days']).keys()">
+                                            <a tal:attributes="
+                                                href python:dict(person['days'])[day].absolute_url();
+                                                title python:dict(person['days'])[day].title">X</a>
                                         </td>
-                                        <td class="day-cell" tal:condition="python:not (day in person['days'])">
+                                        <td class="day-cell"
+                                            tal:condition="python:not (day in dict(person['days']).keys())">
                                         </td>
                                     </tal:r>
                                 </tr>
