@@ -44,6 +44,19 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=True
     )
 
+    dexteritytextindexer.searchable('report_author')
+    form.widget(report_author=AutocompleteMultiFieldWidget)
+    report_author= schema.List(
+        title=_(u'Author(s)'),
+        description=_(u'List of Authors. Enter '
+            'name to search, select and press Enter to add. Repeat to '
+            'to add additional members with principal author first.'),
+        value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
+        default=[],
+        missing_value=(),
+        required=True,
+    )
+
     dexteritytextindexer.searchable('report_outcome')
     report_outcome = schema.TextLine(
         title=_(u'Country / Regional Programme Outcome'),
@@ -60,18 +73,6 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=False
     )
 
-    dexteritytextindexer.searchable('report_author')
-    form.widget(report_author=AutocompleteMultiFieldWidget)
-    report_author= schema.List(
-        title=_(u'Author(s)'),
-        description=_(u'List of Authors. Enter '
-            'name to search, select and press Enter to add. Repeat to '
-            'to add additional members with principal author first.'),
-        value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
-        default=[],
-        missing_value=(),
-        required=True,
-    )
 
     dexteritytextindexer.searchable('achievements_summary')
     form.widget(achievements_summary="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
@@ -112,7 +113,8 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     form.widget(mission_distribution=AutocompleteMultiFieldWidget)
     mission_distribution = schema.List(
         title=_(u'Distribution List (Members)'),
-        description=_(u'Enter additional email, one per line'),
+        description=_(u'Enter name to search, select and press Enter to add. '
+            'Repeat to add additional members'),
         value_type=schema.Choice(vocabulary='plone.principalsource.Users'),
         required=False
     )
