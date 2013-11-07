@@ -31,7 +31,7 @@ class MissionTravel(grok.View):
         month = int(self.request.get('month', now.month))
         year = int(self.request.get('year', now.year))
 
-        results = self.context.results()
+        results = self.context.queryCatalog()
 
         def filter_month_year_type(item):
             if item.portal_type != 'ploneun.missions.mission':
