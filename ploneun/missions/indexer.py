@@ -4,6 +4,8 @@ from ploneun.missions.content.mission import IMission
 from ploneun.missions.content.missionreport import IMissionReport
 from DateTime import DateTime
 from Acquisition import aq_chain
+from Products.DCWorkflow.interfaces import IAfterTransitionEvent
+from zope.lifecycleevent import IObjectModifiedEvent
 from plone import api
 
 def get_mission(obj):
@@ -63,3 +65,14 @@ def missionreport_missionscope(obj):
 @indexer(IMission)
 def mission_missionscope(obj):
     return obj.mission_scope
+
+@grok.subscribe(IMissionReport, IAfterTransitionEvent)
+def reindex_mission_on_report_workflow_update(obj, event):
+    mission = get_mission(obj)
+    mission.reindexObject()
+
+@grok.subscribe(IMission, IObjectModifiedEvent)
+def reindex_missionreport_on_mission_modification(obj, event):
+    for i in obj.values():
+        if IMissionReport.providedBy(i):
+            i.reindexObject()
