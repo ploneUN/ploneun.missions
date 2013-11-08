@@ -41,6 +41,7 @@ setup(name='ploneun.missions',
           'collective.pdfexport',
           'ploneun.calendar',
           'collective.wtf==1.0b8',
+          'inigo.redirecttocontainer',
           'plone.api',
       ],
       extras_require={
