@@ -1,0 +1,12 @@
+<div id="ploneun-missions-content_in_mission_report"
+    tal:condition="viewlet/available">
+   <dl class="portalMessage info">
+            <dt>Info</dt>
+            <dd>This file is attached to 
+                <a tal:define="missionreport viewlet/mission_report"
+                    tal:content="missionreport/Title"
+                    tal:attributes="href missionreport/absolute_url">
+                </a>
+            </dd>
+    </dl>
+</div>
