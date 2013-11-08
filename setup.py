@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0.0a18'
+version = '1.0.0a19.dev0'
 
 setup(name='ploneun.missions',
       version=version,
