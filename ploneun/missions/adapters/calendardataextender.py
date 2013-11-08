@@ -17,9 +17,9 @@ class MissionCalendarDataExtender(grok.Adapter):
         result = []
         members = (obj.mission_members or [])
         if members:
-            result.append(api.user.get(username=member).getProperty('fullname'))
-        country = resolve_value(self.context, mission.country,
-                                'ploneun.vocabulary.country')
+            result.append(api.user.get(username=members[0]).getProperty('fullname'))
+        country = resolve_value(self.context, obj.country, 
+                'ploneun.vocabulary.country')
         result.append(country)
         return {
             'footnote': ', '.join(result)
