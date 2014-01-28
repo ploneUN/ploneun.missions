@@ -43,9 +43,17 @@
 .mission-details th {
     width:100px;
     text-align:right;
+    vertical-align: top;
+    
 }
 
 .mission-details th.header {
     background:#eee;
     text-align:center;
+}
+.edit-mission {
+    text-align: right;
+}
+.mission-note {
+    margin-top: 10px;
 }
