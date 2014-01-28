@@ -111,11 +111,5 @@ class Index(dexterity.DisplayForm):
                 'render': ' '.join(contact)
             })
 
-        if self.context.text:
-            fields.append({
-                'id': 'text',
-                'title': 'Note',
-                'render': self.context.text
-            })
     
         return fields
