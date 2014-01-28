@@ -25,10 +25,22 @@
                                     tal:content="structure field/render">
                                 </td>
                             </tr>
+                            <tr>
+                                <th>
+                                </th>
+                                <td tal:condition="python:context.portal_type == 'ploneun.missions.missionreport'" class="edit-mission">
+                                    <a tal:attributes="href string: ${mission/absolute_url}/edit">[Edit]</a>
+                                </td>
+                            </tr>
+
                         </table>
                     </metal:mission>
 
                 </div> 
+
+                <h3 class="mission-note">Note</h3>
+                <p tal:replace="structure context/text">
+                </p>
 
                 <h2>Mission Report</h2>
 
