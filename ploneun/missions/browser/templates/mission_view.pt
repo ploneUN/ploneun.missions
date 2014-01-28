@@ -7,9 +7,17 @@
     i18n:domain="ploneun.missions">
     <body>
 
-        <metal:main fill-slot="content-core">
+        <metal:title fill-slot="content-title">
+        <h1 class="documentFirstHeading">
+            <img class="mission-icon" tal:attributes="src string: ${context/portal_url}/++resource++ploneun.missions/img/x-office-calendar.png"/>
+            <span tal:content="context/title"></span>
+        </h1>
+        </metal:title>
 
+        <metal:main fill-slot="content-core">
             <metal:content-core define-macro="content-core">
+
+
 
                 <div tal:define="mission nocall:context;
                     mission_view nocall:context/view">
