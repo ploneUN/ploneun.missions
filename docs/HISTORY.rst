@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.0a19 (unreleased)
+1.0.0a19 (2014-01-29)
 ---------------------
 
 - Nothing changed yet.
