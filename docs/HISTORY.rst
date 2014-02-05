@@ -4,7 +4,7 @@ Changelog
 1.0.0a110 (unreleased)
 ----------------------
 
-- Nothing changed yet.
+- Add View link to Mission Report to link to Mission.
 
 
 1.0.0a19 (2014-01-29)
