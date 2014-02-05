@@ -37,6 +37,7 @@
                                 <th>
                                 </th>
                                 <td tal:condition="python:context.portal_type == 'ploneun.missions.missionreport'" class="edit-mission">
+                                    <a tal:attributes="href string: ${mission/absolute_url}/view">[View]</a>
                                     <a tal:attributes="href string: ${mission/absolute_url}/edit">[Edit]</a>
                                 </td>
                             </tr>
