@@ -109,5 +109,11 @@ class IMission(IBasic, IImageScaleTraversable):
         title=_(u'Contact Person Phone'),
         required=False
     )
+    
+    @invariant
+    def start_end_dates_validation(self):
+        if self.startDate and self.endDate:
+            if self.endDate < self.startDate:
+                raise Invalid(_("End date should not be earlier than start date."))
 
 alsoProvides(IMission, IFormFieldProvider)
