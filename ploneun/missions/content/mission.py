@@ -54,7 +54,7 @@ class IMission(IBasic, IImageScaleTraversable):
 
     form.widget(mission_type=RadioFieldWidget)
     mission_type = schema.Choice(
-        title=_(u'Sponsoring Level'),
+        title=_(u'Mission Type'),
         vocabulary=MissionType,
         required=True
     )

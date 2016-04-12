@@ -29,9 +29,15 @@ from ploneun.missions import MessageFactory as _
 from zope.lifecycleevent import IObjectAddedEvent
 from collective import dexteritytextindexer
 from plone.formwidget.multifile import MultiFileFieldWidget
+from z3c.form.browser.radio import RadioFieldWidget
 
 from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import alsoProvides
+
+MissionType = SimpleVocabulary(
+    [SimpleTerm(value=u'Domestic', title=_(u'Domestic')),
+     SimpleTerm(value=u'International', title=_(u'International'))]
+    )
 
 # Interface class; used to define content-type schema.
 
@@ -47,6 +53,13 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
 
     overall_objective = schema.Text(
         title=u'Overall Objective',
+        required=True
+    )
+
+    form.widget(mission_type=RadioFieldWidget)
+    mission_type = schema.Choice(
+        title=_(u'Mission Type'),
+        vocabulary=MissionType,
         required=True
     )
 
