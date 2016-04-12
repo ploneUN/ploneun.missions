@@ -128,10 +128,11 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         value_type=schema.TextLine()
     )
 
-    first_attachment = schema.NamedBlobFile(
-        title=u'Attachment 1',
-        required=True
-    )
+    file_attachement = NamedBlobFile(
+            title=_(u"Attachment 1"),
+            description=_(u"Please attach a file"),
+            required=False,
+        )
 
 
 alsoProvides(IMissionReport, IFormFieldProvider)
