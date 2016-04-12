@@ -41,7 +41,12 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     """
 
     title = schema.TextLine(
-        title=u'Title',
+        title=u'Mission Title',
+        required=True
+    )
+
+    overall_objective = schema.Text(
+        title=u'Overall Objective',
         required=True
     )
 
@@ -78,7 +83,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('achievements_summary')
     form.widget(achievements_summary="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
     achievements_summary = schema.Text(
-        title=_(u'Achievements Summary'),
+        title=_(u'Summary of Main Achievements'),
         description=_(u'Please fill this section in short telex style'),
         required=False
     )
