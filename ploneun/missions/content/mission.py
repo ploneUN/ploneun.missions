@@ -52,7 +52,7 @@ class IMission(IBasic, IImageScaleTraversable):
                               'of the mission.')
 
 
-    directives.widget(mission_type=RadioFieldWidget)
+    form.widget(mission_type=RadioFieldWidget)
     mission_type = schema.Choice(
         title=_(u'Sponsoring Level'),
         vocabulary=MissionType,
