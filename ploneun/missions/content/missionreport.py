@@ -28,6 +28,7 @@ from Acquisition import aq_parent
 from ploneun.missions import MessageFactory as _
 from zope.lifecycleevent import IObjectAddedEvent
 from collective import dexteritytextindexer
+from plone.formwidget.multifile import MultiFileFieldWidget
 
 from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import alsoProvides
@@ -126,6 +127,12 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=False,
         value_type=schema.TextLine()
     )
+
+    first_attachment = schema.NamedBlobFile(
+        title=u'Attachment 1',
+        required=True
+    )
+
 
 alsoProvides(IMissionReport, IFormFieldProvider)
 
