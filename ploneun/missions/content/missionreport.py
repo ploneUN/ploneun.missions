@@ -134,6 +134,30 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
             required=False,
         )
 
+    file_attachement_two = NamedBlobFile(
+            title=_(u"Attachment 2"),
+            description=_(u"Please attach a file"),
+            required=False,
+        )
+
+    file_attachement_three = NamedBlobFile(
+            title=_(u"Attachment 3"),
+            description=_(u"Please attach a file"),
+            required=False,
+        )
+
+    file_attachement_four = NamedBlobFile(
+            title=_(u"Attachment 4"),
+            description=_(u"Please attach a file"),
+            required=False,
+        )
+
+    file_attachement_five = NamedBlobFile(
+            title=_(u"Attachment 5"),
+            description=_(u"Please attach a file"),
+            required=False,
+        )
+
 
 alsoProvides(IMissionReport, IFormFieldProvider)
 
