@@ -37,7 +37,7 @@ class IMission(IBasic, IImageScaleTraversable):
     Plone UN Mission
     """
 
-    title = schema.TextLine(title=u'Mission', 
+    title = schema.TextLine(title=u'Mission Title', 
                             description=u'Brief title of mission. eg. '
                             'Public Consultation for UN Workshop.')
 
