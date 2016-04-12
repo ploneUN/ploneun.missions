@@ -29,6 +29,7 @@ from collective import dexteritytextindexer
 
 from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import alsoProvides
+from plone.z3cform.fieldsets.utils import move
 
 MissionType = SimpleVocabulary(
     [SimpleTerm(value=u'Domestic', title=_(u'Domestic')),
@@ -81,11 +82,11 @@ class IMission(IBasic, IImageScaleTraversable):
     )
 
     startDate = schema.Datetime(
-        title=_(u'Start date'),
+        title=_(u'Mission Start date'),
     )
 
     endDate  = schema.Datetime(
-        title=_(u'End date'),
+        title=_(u'Mission End date'),
     )
 
     dexteritytextindexer.searchable('mission_members')
@@ -129,5 +130,41 @@ class IMission(IBasic, IImageScaleTraversable):
         if self.startDate and self.endDate:
             if self.endDate < self.startDate:
                 raise Invalid(_("End date should not be earlier than start date."))
+            
 
 alsoProvides(IMission, IFormFieldProvider)
+
+
+class missionAddForm(dexterity.AddForm):
+    grok.name('ploneun.missions.mission')
+    form.wrap(False)
+    
+    def updateFields(self):
+        super(missionAddForm, self).updateFields()
+        if 'IILOOffices.ilo_offices' in self.fields.keys():
+            move(self, 'IILOOffices.ilo_offices', after='text')
+        if 'IILOTheme.ilo_themes' in self.fields.keys():
+            move(self, 'IILOTheme.ilo_themes', after='IILOOffices.ilo_offices')
+        if 'IILOTheme.theme_other' in self.fields.keys():
+            move(self, 'IILOTheme.theme_other', after='IILOTheme.ilo_themes')
+        if 'IILORegions.ilo_regions' in self.fields.keys():
+            move(self, 'IILORegions.ilo_regions', after='IILOTheme.theme_other')
+        if 'IILOOffices.mission_location_other' in self.fields.keys():
+            move(self, 'IILOOffices.mission_location_other', after='IILORegions.ilo_regions')
+
+
+class missionEditForm(dexterity.EditForm):
+    grok.context(IMission)
+    
+    def updateFields(self):
+        super(missionEditForm, self).updateFields()
+        if 'IILOOffices.ilo_offices' in self.fields.keys():
+            move(self, 'IILOOffices.ilo_offices', after='text')
+        if 'IILOTheme.ilo_themes' in self.fields.keys():
+            move(self, 'IILOTheme.ilo_themes', after='IILOOffices.ilo_offices')
+        if 'IILOTheme.theme_other' in self.fields.keys():
+            move(self, 'IILOTheme.theme_other', after='IILOTheme.ilo_themes')
+        if 'IILORegions.ilo_regions' in self.fields.keys():
+            move(self, 'IILORegions.ilo_regions', after='IILOTheme.theme_other')
+        if 'IILOOffices.mission_location_other' in self.fields.keys():
+            move(self, 'IILOOffices.mission_location_other', after='IILORegions.ilo_regions')
