@@ -22,12 +22,18 @@ from plone.formwidget.autocomplete import AutocompleteMultiFieldWidget
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.app.dexterity.behaviors.metadata import IBasic
+from z3c.form.browser.radio import RadioFieldWidget
 
 from ploneun.missions import MessageFactory as _
 from collective import dexteritytextindexer
 
 from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import alsoProvides
+
+MissionType = SimpleVocabulary(
+    [SimpleTerm(value=u'Domestic', title=_(u'Domestic')),
+     SimpleTerm(value=u'International', title=_(u'International'))]
+    )
 
 
 # Interface class; used to define content-type schema.
@@ -44,6 +50,14 @@ class IMission(IBasic, IImageScaleTraversable):
     description = schema.Text(title=u'Mission Objective', 
                               description=u'Briefly describe the objectives '
                               'of the mission.')
+
+
+    directives.widget(mission_type=RadioFieldWidget)
+    mission_type = schema.Choice(
+        title=_(u'Sponsoring Level'),
+        vocabulary=MissionType,
+        required=True
+    )
 
     dexteritytextindexer.searchable('mission_scope')
     mission_scope= schema.Choice(
