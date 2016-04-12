@@ -128,31 +128,31 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         value_type=schema.TextLine()
     )
 
-    file_attachement = NamedBlobFile(
+    attachment1 = NamedBlobFile(
             title=_(u"Attachment 1"),
             description=_(u"Please attach a file"),
             required=False,
         )
 
-    file_attachement_two = NamedBlobFile(
+    attachment2 = NamedBlobFile(
             title=_(u"Attachment 2"),
             description=_(u"Please attach a file"),
             required=False,
         )
 
-    file_attachement_three = NamedBlobFile(
+    attachment3 = NamedBlobFile(
             title=_(u"Attachment 3"),
             description=_(u"Please attach a file"),
             required=False,
         )
 
-    file_attachement_four = NamedBlobFile(
+    attachment4 = NamedBlobFile(
             title=_(u"Attachment 4"),
             description=_(u"Please attach a file"),
             required=False,
         )
 
-    file_attachement_five = NamedBlobFile(
+    attachment5 = NamedBlobFile(
             title=_(u"Attachment 5"),
             description=_(u"Please attach a file"),
             required=False,
