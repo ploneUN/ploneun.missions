@@ -83,6 +83,20 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    startDate = schema.Datetime(
+        title=_(u'Mission Start date'),
+    )
+
+    endDate  = schema.Datetime(
+        title=_(u'Mission End date'),
+    )
+
+    dexteritytextindexer.searchable('mission_city')
+    mission_city = schema.TextLine(
+        title=_(u'City'),
+        required=False
+    )
+
     dexteritytextindexer.searchable('mission_findings')
     form.widget(mission_findings="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
     mission_findings = schema.Text(
