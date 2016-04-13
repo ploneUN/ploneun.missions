@@ -28,9 +28,9 @@
      <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
      <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
-     <element value="ilo.extenders.behavior.ilotheme.IILOTheme"/>
-     <element value="ilo.extenders.behavior.iloregions.IILORegions"/>
      <element value="ilo.extenders.behavior.ilooffices.IILOOffices"/>
+     <element value="ilo.extenders.behavior.iloregions.IILORegions"/>
+     <element value="ilo.extenders.behavior.ilotheme.IILOTheme"/>
    </property>
 
   <!-- View information -->
