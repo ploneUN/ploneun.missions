@@ -106,6 +106,12 @@ class IMission(IBasic, IImageScaleTraversable):
         title=_(u'Notes'),
         required=False
     )
+    
+    mission_location_other = schema.TextLine(
+        title = _(u'Other Regions'),
+        description = _(u'If Other Regions was selected, please specify country location.'),
+        required = False,
+    )
 
     dexteritytextindexer.searchable('contactName')
     contactName = schema.TextLine(
@@ -147,10 +153,10 @@ class missionAddForm(dexterity.AddForm):
             move(self, 'IILOTheme.ilo_themes', after='IILOOffices.ilo_offices')
         if 'IILOTheme.theme_other' in self.fields.keys():
             move(self, 'IILOTheme.theme_other', after='IILOTheme.ilo_themes')
-        if 'IILORegions.ilo_regions' in self.fields.keys():
-            move(self, 'IILORegions.ilo_regions', after='IILOTheme.theme_other')
-        if 'IILOOffices.mission_location_other' in self.fields.keys():
-            move(self, 'IILOOffices.mission_location_other', after='IILORegions.ilo_regions')
+        #if 'IILORegions.ilo_regions' in self.fields.keys():
+        #    move(self, 'IILORegions.ilo_regions', after='IILOTheme.theme_other')
+        if 'mission_location_other' in self.fields.keys():
+            move(self, 'mission_location_other', after='IILOTheme.theme_other')
 
 
 class missionEditForm(dexterity.EditForm):
