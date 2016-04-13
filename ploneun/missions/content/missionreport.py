@@ -33,6 +33,7 @@ from z3c.form.browser.radio import RadioFieldWidget
 
 from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import alsoProvides
+from plone.z3cform.fieldsets.utils import move
 
 MissionType = SimpleVocabulary(
     [SimpleTerm(value=u'Domestic', title=_(u'Domestic')),
@@ -45,7 +46,6 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     """
     UN Mission Report
     """
-
     title = schema.TextLine(
         title=u'Mission Title',
         required=True
@@ -56,11 +56,20 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=True
     )
 
-    form.widget(mission_type=RadioFieldWidget)
-    mission_type = schema.Choice(
-        title=_(u'Mission Type'),
-        vocabulary=MissionType,
-        required=True
+    dexteritytextindexer.searchable('report_outcome')
+    report_outcome = schema.TextLine(
+        title=_(u'Country / Regional Programme Outcome'),
+        description=_(u'Enter outcome code here eg. IDN 101'),
+        required=False
+    )
+
+    dexteritytextindexer.searchable('report_outcome_text')
+    form.widget(report_outcome_text="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+    report_outcome_text = schema.Text(
+        title=_(u'Contribution to Outcome'),
+        description=_(u'Please describe briefly how your mission has'
+            'contributed to realizing the relevant country/regional outcome.'),
+        required=False
     )
 
     dexteritytextindexer.searchable('report_author')
@@ -87,30 +96,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
-    dexteritytextindexer.searchable('report_outcome')
-    report_outcome = schema.TextLine(
-        title=_(u'Country / Regional Programme Outcome'),
-        description=_(u'Enter outcome code here eg. IDN 101'),
-        required=False
-    )
-
-    dexteritytextindexer.searchable('report_outcome_text')
-    form.widget(report_outcome_text="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
-    report_outcome_text = schema.Text(
-        title=_(u'Contribution to Outcome'),
-        description=_(u'Please describe briefly how your mission has'
-            'contributed to realizing the relevant country/regional outcome.'),
-        required=False
-    )
-
-
-    dexteritytextindexer.searchable('achievements_summary')
-    form.widget(achievements_summary="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
-    achievements_summary = schema.Text(
-        title=_(u'Summary of Main Achievements'),
-        description=_(u'Please fill this section in short telex style'),
-        required=False
-    )
+    #ILO Office
 
     startDate = schema.Datetime(
         title=_(u'Mission Start date'),
@@ -120,9 +106,33 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         title=_(u'Mission End date'),
     )
 
+    form.widget(mission_type=RadioFieldWidget)
+    mission_type = schema.Choice(
+        title=_(u'Mission Type'),
+        vocabulary=MissionType,
+        required=True
+    )
+
+
     dexteritytextindexer.searchable('mission_city')
     mission_city = schema.TextLine(
         title=_(u'City'),
+        required=False
+    )
+
+    #Mission Location
+
+    #Other
+
+    #ILO themes
+
+    #Theme
+
+    dexteritytextindexer.searchable('achievements_summary')
+    form.widget(achievements_summary="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+    achievements_summary = schema.Text(
+        title=_(u'Summary of Main Achievements'),
+        description=_(u'Please fill this section in short telex style'),
         required=False
     )
 
@@ -202,7 +212,47 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         )
 
 
+
+
 alsoProvides(IMissionReport, IFormFieldProvider)
+
+
+#reorder fields on add form
+class missionReportAddForm(dexterity.AddForm):
+    grok.name('ploneun.missions.missionreport')
+    form.wrap(False)
+    def updateFields(self):
+        super(missionReportAddForm, self).updateFields()
+        if 'IILOOffices.ilo_offices' in self.fields.keys():
+            move(self, 'IILOOffices.ilo_offices', after='mission_members')
+
+        if 'IILORegions.ilo_regions' in self.fields.keys():
+            move(self, 'IILORegions.ilo_regions', after='mission_city')
+        if 'IILOOffices.mission_location_other' in self.fields.keys():
+            move(self, 'IILOOffices.mission_location_other', after='IILORegions.ilo_regions')
+
+        if 'IILOTheme.ilo_themes' in self.fields.keys():
+            move(self, 'IILOTheme.ilo_themes', after='IILOOffices.mission_location_other')
+        if 'IILOTheme.theme_other' in self.fields.keys():
+            move(self, 'IILOTheme.theme_other', after='IILOTheme.ilo_themes')
+
+#reorder fields on edit form
+class missionReportEditForm(dexterity.EditForm):
+    grok.context(IMissionReport)
+    def updateFields(self):
+        super(missionReportEditForm, self).updateFields()
+        if 'IILOOffices.ilo_offices' in self.fields.keys():
+            move(self, 'IILOOffices.ilo_offices', after='mission_members')
+
+        if 'IILORegions.ilo_regions' in self.fields.keys():
+            move(self, 'IILORegions.ilo_regions', after='mission_city')
+        if 'IILOOffices.mission_location_other' in self.fields.keys():
+            move(self, 'IILOOffices.mission_location_other', after='IILORegions.ilo_regions')
+
+        if 'IILOTheme.ilo_themes' in self.fields.keys():
+            move(self, 'IILOTheme.ilo_themes', after='IILOOffices.mission_location_other')
+        if 'IILOTheme.theme_other' in self.fields.keys():
+            move(self, 'IILOTheme.theme_other', after='IILOTheme.ilo_themes')
 
 class NameFromTitle(grok.Adapter):
     grok.implements(INameFromTitle)
