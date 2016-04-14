@@ -101,11 +101,11 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
 
     #ILO Office
 
-    startDate = schema.Datetime(
+    startDate = schema.Date(
         title=_(u'Mission Start date'),
     )
 
-    endDate  = schema.Datetime(
+    endDate  = schema.Date(
         title=_(u'Mission End date'),
     )
 
