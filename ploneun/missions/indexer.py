@@ -66,10 +66,10 @@ def missionreport_missionscope(obj):
 def mission_missionscope(obj):
     return obj.mission_scope
 
-@grok.subscribe(IMissionReport, IAfterTransitionEvent)
-def reindex_mission_on_report_workflow_update(obj, event):
-    mission = get_mission(obj)
-    mission.reindexObject()
+#@grok.subscribe(IMissionReport, IAfterTransitionEvent)
+#def reindex_mission_on_report_workflow_update(obj, event):
+#    mission = get_mission(obj)
+#    mission.reindexObject()
 
 @grok.subscribe(IMission, IObjectModifiedEvent)
 def reindex_missionreport_on_mission_modification(obj, event):
