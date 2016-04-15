@@ -58,8 +58,8 @@
 
 	  <hr />
 
-	  <metal:mission use-macro="mission/view/macros/mission">
-	  </metal:mission>
+	  <!--<metal:mission use-macro="mission/view/macros/mission">
+	  </metal:mission>-->
 
       <tal:block repeat="field view/detail_fields">
           <h3 tal:content="field/title"></h3>
