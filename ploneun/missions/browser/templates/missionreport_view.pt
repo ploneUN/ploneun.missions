@@ -113,6 +113,21 @@
 
                 </li>
             </tal:attachments>
+			<li tal:condition="context/attachment1">
+				  <span tal:content="structure view/w/attachment1/render"></span>
+			</li>
+			<li tal:condition="context/attachment2">
+				  <span tal:content="structure view/w/attachment2/render"></span>
+			</li>
+			<li tal:condition="context/attachment3">
+				  <span tal:content="structure view/w/attachment3/render"></span>
+			</li>
+			<li tal:condition="context/attachment4">
+				  <span tal:content="structure view/w/attachment4/render"></span>
+			</li>
+			<li tal:condition="context/attachment5">
+				  <span tal:content="structure view/w/attachment5/render"></span>
+			</li>
         </ul>
     </div>
 </div>
