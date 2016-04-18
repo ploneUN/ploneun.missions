@@ -20,7 +20,9 @@ def send_distribution_list(obj, event):
     #other
     all_email = list()
     report_authors = obj.report_author
-    mission_members = get_mission(obj).mission_members
+    mission_members = []
+    if get_mission(obj):
+        mission_members = get_mission(obj).mission_members
     mission_distribution = obj.mission_distribution
 
     #creator
@@ -89,7 +91,7 @@ def send_distribution_list(obj, event):
         file = file_brain.getObject().getFile()
         ctype = file.getContentType()
         filename = file.filename
-
+        
         maintype, subtype = ctype.split(('/'), 1)
         attachment = MIMEBase(maintype, subtype)
         attachment.set_payload(str(file))
@@ -97,6 +99,18 @@ def send_distribution_list(obj, event):
         attachment.add_header('Content-Disposition', 'attachment',
                               filename=filename)
         msg.attach(attachment)
+    
+    for atch in ['attachment1', 'attachment2', 'attachment3', 'attachment4', 'attachment5']:
+        attach = getattr(obj, atch)
+        ctype = attach.contentType
+        filename = attach.filename
+        maintype, subtype = ctype.split(('/'), 1)
+        attachment = MIMEBase(maintype, subtype)
+        attachment.set_payload(str(attach.data))
+        Encoders.encode_base64(attachment)
+        attachment.add_header('Content-Disposition', 'attachment', filename=filename)
+        msg.attach(attachment)
+        
 
     #send email
     for recipient in filtered_email:
