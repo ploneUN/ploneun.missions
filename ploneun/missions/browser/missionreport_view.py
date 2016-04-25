@@ -81,3 +81,10 @@ class Index(dexterity.DisplayForm):
         if state in ['private']:
             return True
         return False
+    
+    def link_attachments(self):
+        brains = self.context.portal_catalog({'portal_type':'Link',
+                                              'path':{
+                                                'query':'/'.join(self.context.getPhysicalPath()),
+                                                'depth':1}})
+        return brains
