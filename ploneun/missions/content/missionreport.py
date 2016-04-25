@@ -219,6 +219,11 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
             description=_(u"Please attach a file"),
             required=False,
         )
+    
+    @invariant
+    def formValidation(self):
+        if self.startDate > self.endDate:
+            raise Invalid(u"Start date should not be later than end date.")
 
 
 
