@@ -59,21 +59,21 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=True
     )
 
-    dexteritytextindexer.searchable('report_outcome')
-    report_outcome = schema.TextLine(
-        title=_(u'Country / Regional Programme Outcome'),
-        description=_(u'Enter outcome code here eg. IDN 101'),
-        required=False
-    )
+#    dexteritytextindexer.searchable('report_outcome')
+#    report_outcome = schema.TextLine(
+#        title=_(u'Country / Regional Programme Outcome'),
+#        description=_(u'Enter outcome code here eg. IDN 101'),
+#        required=False
+#    )
 
-    dexteritytextindexer.searchable('report_outcome_text')
-    form.widget(report_outcome_text="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
-    report_outcome_text = schema.Text(
-        title=_(u'Contribution to Outcome'),
-        description=_(u'Please describe briefly how your mission has'
-            'contributed to realizing the relevant country/regional outcome.'),
-        required=False
-    )
+#    dexteritytextindexer.searchable('report_outcome_text')
+#    form.widget(report_outcome_text="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+#    report_outcome_text = schema.Text(
+#        title=_(u'Contribution to Outcome'),
+#        description=_(u'Please describe briefly how your mission has'
+#            'contributed to realizing the relevant country/regional outcome.'),
+#        required=False
+#    )
 
 #    dexteritytextindexer.searchable('report_author')
 #    form.widget(report_author=AutocompleteMultiFieldWidget)
