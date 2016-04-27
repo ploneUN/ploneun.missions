@@ -99,9 +99,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     form.widget(mission_members=AutocompleteMultiFieldWidget)
     mission_members= schema.List(
         title=_(u'Mission Members'),
-        description=_(u'List of Mission Members. Enter '
-                      'name to search, select and press Enter to add. Repeat to '
-                      'to add additional members.'),
+        description=_(u'List of Mission Members.'),
         value_type=schema.Choice(vocabulary=u"plone.principalsource.Users",),
         required=True,
     )
