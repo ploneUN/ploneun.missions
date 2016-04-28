@@ -182,7 +182,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
 #        title=u'Distribution List (Members)',
 #        description=_(u'Comma separated list of who a copy of this mission report should be sent to. Select previous email addresses from drop down list, or type new email address followed by a comma. Copy will be sent, when Mission Report state is submitted.'),
 #        required=True
-    )
+#    )
 
 #    mission_distribution_others = schema.Text(
 #        title=u'Distribution List (Others)',
