@@ -178,35 +178,35 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     )
 
 
-    mission_distribution = schema.Text(
-        title=u'Distribution List (Members)',
-        description=_(u'Comma separated list of who a copy of this mission report should be sent to. Select previous email addresses from drop down list, or type new email address followed by a comma. Copy will be sent, when Mission Report state is submitted.'),
-        required=True
+#    mission_distribution = schema.Text(
+#        title=u'Distribution List (Members)',
+#        description=_(u'Comma separated list of who a copy of this mission report should be sent to. Select previous email addresses from drop down list, or type new email address followed by a comma. Copy will be sent, when Mission Report state is submitted.'),
+#        required=True
     )
 
-    mission_distribution_others = schema.Text(
-        title=u'Distribution List (Others)',
-        description=_(u'Comma separated list of who a copy of this mission report should be sent to. Select previous email addresses from drop down list, or type new email address followed by a comma. Copy will be sent, when Mission Report state is submitted.'),
-        required=True
+#    mission_distribution_others = schema.Text(
+#        title=u'Distribution List (Others)',
+#        description=_(u'Comma separated list of who a copy of this mission report should be sent to. Select previous email addresses from drop down list, or type new email address followed by a comma. Copy will be sent, when Mission Report state is submitted.'),
+#        required=True
+#    )
+
+    dexteritytextindexer.searchable('mission_distribution')
+    form.widget(mission_distribution=AutocompleteMultiFieldWidget)
+    mission_distribution = schema.List(
+        title=_(u'Distribution List (Members)'),
+        description=_(u'Enter name to search, select and press Enter to add. '
+            'Repeat to add additional members'),
+        value_type=schema.Choice(vocabulary='plone.principalsource.Users'),
+        required=False
     )
 
-#    dexteritytextindexer.searchable('mission_distribution')
-#    form.widget(mission_distribution=AutocompleteMultiFieldWidget)
-#    mission_distribution = schema.List(
-#        title=_(u'Distribution List (Members)'),
-#        description=_(u'Enter name to search, select and press Enter to add. '
-#            'Repeat to add additional members'),
-#        value_type=schema.Choice(vocabulary='plone.principalsource.Users'),
-#        required=False
-#    )
-
-#    dexteritytextindexer.searchable('mission_distribution_others')
-#    mission_distribution_others = schema.List(
-#        title=_(u'Distribution List (Others)'),
-#        description=_(u'Enter additional email, one per line'),
-#        required=False,
-#        value_type=schema.TextLine()
-#    )
+    dexteritytextindexer.searchable('mission_distribution_others')
+    mission_distribution_others = schema.List(
+        title=_(u'Distribution List (Others)'),
+        description=_(u'Add email addreses of unregistered members here.  One address for each line'),
+        required=False,
+        value_type=schema.TextLine()
+    )
 
     attachment1 = NamedBlobFile(
             title=_(u"Attachment 1"),
