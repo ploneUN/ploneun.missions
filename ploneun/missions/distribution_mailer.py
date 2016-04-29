@@ -12,6 +12,15 @@ from zope.component.interfaces import ComponentLookupError
 from Products.CMFPlone.utils import safe_unicode
 from plone import api
 from zope.component.hooks import getSite
+from Products.CMFDefault.utils import checkEmailAddress
+from Products.CMFDefault.exceptions import EmailAddressInvalid
+
+def validateaddress(value):
+    try:
+        checkEmailAddress(value)
+    except EmailAddressInvalid:
+        return False
+    return True
 
 @grok.subscribe(IMissionReport, IAfterTransitionEvent)
 def send_distribution_list(obj, event):
@@ -24,19 +33,33 @@ def send_distribution_list(obj, event):
     if get_mission(obj):
         mission_members = get_mission(obj).mission_members
     mission_distribution = obj.mission_distribution
+    
+    for md in mission_distribution:
+        other_usr = obj.portal_membership.getMemberById(md)
+        if other_usr:
+            all_email.append(other_usr.getProperty('email'))
+    
+    distribution_others = obj.mission_distribution_others
+    for dist_other in distribution_others:
+        if validateaddress(dist_other):
+            all_email.append(dist_other)
+    
 
     #creator
     creator = obj.Creator()
     creator_info = obj.portal_membership.getMemberInfo(creator)
     creator_full_name = creator_info['fullname']
+    creator_email = obj.portal_membership.getMemberById(creator).getProperty('email')
+    all_email.append(creator_email)
+    
+    #for i in set(report_authors + mission_members + [creator]):
+    #    email = obj.portal_membership.getMemberById(i).getProperty('email')
+    #    all_email.append(email)
 
-    for i in set(report_authors + mission_members + [creator]):
-        email = obj.portal_membership.getMemberById(i).getProperty('email')
-        all_email.append(email)
-
-    all_email.extend(mission_distribution)
+    #all_email.extend(mission_distribution)
     filtered_email = list(set(all_email))
-
+    
+    
     converter = getUtility(IPDFConverter)
     pdf = converter.convert(obj)
 
