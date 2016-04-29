@@ -34,9 +34,18 @@ from z3c.form.browser.radio import RadioFieldWidget
 from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import alsoProvides
 from plone.z3cform.fieldsets.utils import move
+from Products.CMFDefault.utils import checkEmailAddress
+from Products.CMFDefault.exceptions import EmailAddressInvalid
 
 #from z3c.form.interfaces import HIDDEN_MODE
 import z3c.form
+
+def validateaddress(value):
+    try:
+        checkEmailAddress(value)
+    except EmailAddressInvalid:
+        return False
+    return True
 
 MissionType = SimpleVocabulary(
     [SimpleTerm(value=u'Domestic', title=_(u'Domestic')),
@@ -242,7 +251,10 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
     def formValidation(self):
         if self.startDate > self.endDate:
             raise Invalid(u"Start date should not be later than end date.")
-
+        if self.mission_distribution_others:
+            for mdo in self.mission_distribution_others:
+                if not validateaddress(mdo):
+                    raise Invalid(u"One the addresess in Distribution List (Others) is not a valid email address, or addresses were not line separated.")
 
 
 
