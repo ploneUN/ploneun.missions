@@ -61,7 +61,6 @@ def send_distribution_list(obj, event):
     
     
     converter = getUtility(IPDFConverter)
-    import pdb; pdb.set_trace()
     pdf = converter.convert(obj)
 
     mailhost = obj.MailHost
