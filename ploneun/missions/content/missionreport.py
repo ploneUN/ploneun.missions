@@ -123,6 +123,7 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         title=_(u'Mission End date'),
     )
 
+    dexteritytextindexer.searchable('mission_type')
     form.widget(mission_type=RadioFieldWidget)
     mission_type = schema.Choice(
         title=_(u'Mission Type'),
