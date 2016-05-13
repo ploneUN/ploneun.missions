@@ -101,12 +101,13 @@ def send_distribution_list(obj, event):
 
     # generated pdf attachments
 
-    attachment = MIMEBase('application', 'pdf')
-    attachment.set_payload(pdf.buf)
-    Encoders.encode_base64(attachment)
-    attachment.add_header('Content-Disposition', 'attachment',
-                          filename=subject + '.pdf')
-    msg.attach(attachment)
+    if pdf:
+        attachment = MIMEBase('application', 'pdf')
+        attachment.set_payload(pdf.buf)
+        Encoders.encode_base64(attachment)
+        attachment.add_header('Content-Disposition', 'attachment',
+                              filename=subject + '.pdf')
+        msg.attach(attachment)
 
     #attactments in the report
     file_brains = obj.getFolderContents()
