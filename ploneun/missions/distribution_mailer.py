@@ -34,13 +34,13 @@ def send_distribution_list(obj, event):
         mission_members = get_mission(obj).mission_members
     mission_distribution = obj.mission_distribution
     
-    for md in mission_distribution:
+    for md in mission_distribution or []:
         other_usr = obj.portal_membership.getMemberById(md)
         if other_usr:
             all_email.append(other_usr.getProperty('email'))
     
     distribution_others = obj.mission_distribution_others
-    for dist_other in distribution_others:
+    for dist_other in distribution_others or []:
         if validateaddress(dist_other):
             all_email.append(dist_other)
     
