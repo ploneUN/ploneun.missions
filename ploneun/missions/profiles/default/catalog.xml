@@ -12,5 +12,10 @@
     <index name="ploneun_has_missionreport" meta_type="BooleanIndex">
         <indexed_attr value="ploneun_has_missionreport"/>
     </index>
+    
+    <column value="mission_type"/>
+    <index name="mission_type" meta_type="FieldIndex">
+        <indexed_attr value="mission_type"/>
+    </index>
 
 </object>
