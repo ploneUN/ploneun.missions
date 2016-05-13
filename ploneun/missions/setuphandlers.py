@@ -15,3 +15,4 @@ def setupVarious(context):
     portal.portal_catalog.reindexIndex('ploneun_missionscope', portal.REQUEST)
     portal.portal_catalog.reindexIndex('ploneun_country', portal.REQUEST)
     portal.portal_catalog.reindexIndex('ploneun_country', portal.REQUEST)
+    portal.portal_catalog.reindexIndex('mission_type', portal.REQUEST)
