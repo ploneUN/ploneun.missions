@@ -1,11 +1,5 @@
 <?xml version="1.0"?>
 <object name="portal_workflow" meta_type="Plone Workflow Tool">
  <bindings>
-   <type type_id="ploneun.missions.mission">
-     <bound-workflow workflow_id="mission_intranet_workflow" />
-   </type>
-   <type type_id="ploneun.missions.missionreport">
-     <bound-workflow workflow_id="missionreport_intranet_workflow" />
-   </type>
  </bindings>
 </object>
