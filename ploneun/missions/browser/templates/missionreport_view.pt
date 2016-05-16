@@ -96,25 +96,26 @@
         <p class="discreet visualNoPrint">
         </p>
 
-        <ul tal:define="attachments view/attachments"
-            tal:condition="attachments">
-            <tal:attachments repeat="attachment attachments">
-                <li>
-        <div>
-            <img tal:attributes="src string:${context/portal_url}/${attachment/icon}"/>
-            <span tal:content="attachment/filename"></span>
-            - <a tal:attributes="href string:${attachment/obj/absolute_url}/at_download/file">
-                Download 
-              </a>
-              - <a tal:attributes="href string:${attachment/obj/absolute_url}/view">View Online</a>
-            <tal:block condition="view/is_draft">
-                - <a tal:attributes="href string:${attachment/obj/absolute_url}/edit">Edit</a>
-                - <a tal:attributes="href string:${attachment/obj/absolute_url}/delete_confirmation">Delete</a>
-            </tal:block>
-        </div>
-
-                </li>
-            </tal:attachments>
+        <ul tal:define="attachments view/attachments">
+			<tal:block tal:condition="attachments">
+				  <tal:attachments repeat="attachment attachments">
+					  <li>
+						<div>
+							<img tal:attributes="src string:${context/portal_url}/${attachment/icon}"/>
+							<span tal:content="attachment/filename"></span>
+							- <a tal:attributes="href string:${attachment/obj/absolute_url}/at_download/file">
+								Download 
+							  </a>
+							  - <a tal:attributes="href string:${attachment/obj/absolute_url}/view">View Online</a>
+							<tal:block condition="view/is_draft">
+								- <a tal:attributes="href string:${attachment/obj/absolute_url}/edit">Edit</a>
+								- <a tal:attributes="href string:${attachment/obj/absolute_url}/delete_confirmation">Delete</a>
+							</tal:block>
+						</div>
+	  
+					  </li>
+				  </tal:attachments>
+			</tal:block>
 			<li tal:condition="context/attachment1">
 				  <span tal:content="structure view/w/attachment1/render"></span>
 			</li>
