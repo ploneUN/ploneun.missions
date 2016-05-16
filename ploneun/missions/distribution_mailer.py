@@ -96,7 +96,7 @@ def send_distribution_list(obj, event):
     
     ----------
     %(site_name)s
-    mailto:%(site_email)s
+    %(site_email)s
     %(site_url)s
 
     """ % {
