@@ -92,7 +92,11 @@ def send_distribution_list(obj, event):
     %(url)s
 
     --
-    This is a system message from:\n %(site_name)s \n mailto:%(site_email)s \n %(site_url)s.
+    This is a system message from:
+    
+    %(site_name)s
+    mailto:%(site_email)s
+    %(site_url)s
 
     """ % {
         'url': obj.absolute_url(),
