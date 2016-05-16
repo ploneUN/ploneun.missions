@@ -103,15 +103,21 @@ class IMissionReport(form.Schema, IImageScaleTraversable):
         required=True
     )
 
-
-    dexteritytextindexer.searchable('mission_members')
-    form.widget(mission_members=AutocompleteMultiFieldWidget)
-    mission_members= schema.List(
-        title=_(u'Mission Members'),
+    mission_members = schema.Text(
+        title=u'Mission Members',
         description=_(u'List of Mission Members.'),
-        value_type=schema.Choice(vocabulary=u"plone.principalsource.Users",),
-        required=True,
+        required=True
     )
+
+
+#    dexteritytextindexer.searchable('mission_members')
+#    form.widget(mission_members=AutocompleteMultiFieldWidget)
+#    mission_members= schema.List(
+#        title=_(u'Mission Members'),
+#        description=_(u'List of Mission Members.'),
+#        value_type=schema.Choice(vocabulary=u"plone.principalsource.Users",),
+#        required=True,
+#    )
 
     #ILO Office
 
