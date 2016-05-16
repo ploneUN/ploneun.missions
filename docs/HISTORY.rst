@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.0.0a110.dev1
+- modified mission report
+
 1.0.0a110 (unreleased)
 ----------------------
 
