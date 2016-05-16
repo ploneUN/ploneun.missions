@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.0a20 (may 16, 2016)
+-modified email template and release for production
+
+---------------------
+
 1.0.0a110.dev1
 - modified mission report
 
