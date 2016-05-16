@@ -112,17 +112,18 @@ def send_distribution_list(obj, event):
     #attactments in the report
     file_brains = obj.getFolderContents()
     for file_brain in file_brains:
-        file = file_brain.getObject().getFile()
-        ctype = file.getContentType()
-        filename = file.filename
-        
-        maintype, subtype = ctype.split(('/'), 1)
-        attachment = MIMEBase(maintype, subtype)
-        attachment.set_payload(str(file))
-        Encoders.encode_base64(attachment)
-        attachment.add_header('Content-Disposition', 'attachment',
-                              filename=filename)
-        msg.attach(attachment)
+        if file_brain.portal_type == 'File':
+            file = file_brain.getObject().getFile()
+            ctype = file.getContentType()
+            filename = file.filename
+            
+            maintype, subtype = ctype.split(('/'), 1)
+            attachment = MIMEBase(maintype, subtype)
+            attachment.set_payload(str(file))
+            Encoders.encode_base64(attachment)
+            attachment.add_header('Content-Disposition', 'attachment',
+                                  filename=filename)
+            msg.attach(attachment)
     
     for atch in ['attachment1', 'attachment2', 'attachment3', 'attachment4', 'attachment5']:
         attach = getattr(obj, atch)
