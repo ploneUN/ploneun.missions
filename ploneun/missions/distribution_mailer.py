@@ -24,7 +24,7 @@ def validateaddress(value):
 
 @grok.subscribe(IMissionReport, IAfterTransitionEvent)
 def send_distribution_list(obj, event):
-    if not event.new_state.id in ['internally_published']:
+    if not event.new_state.id in ['shared_intranet']:
         return
     #other
     all_email = list()
