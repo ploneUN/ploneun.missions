@@ -14,6 +14,7 @@ from plone import api
 from zope.component.hooks import getSite
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
+from Products.CMFCore.utils import getToolByName
 
 def validateaddress(value):
     try:
@@ -27,6 +28,9 @@ def send_distribution_list(obj, event):
     if not event.new_state.id in ['shared_intranet']:
         return
     #other
+    portal_url = getToolByName(obj, 'portal_url')
+    site_email = portal_url.getPortalObject().getProperty('email_from_address')
+    
     all_email = list()
     report_authors = obj.report_author
     mission_members = []
@@ -82,17 +86,19 @@ def send_distribution_list(obj, event):
     msg = MIMEMultipart()
     msg['Subject'] = subject
     msg['From'] = source
-
+    
     body = """You can view the full report online at:
 
     %(url)s
 
     --
-    This is a system message from %(site_name)s.
+    This is a system message from:\n %(site_name)s \n mailto:%(site_email)s \n %(site_url)s.
 
     """ % {
         'url': obj.absolute_url(),
-        'site_name': getSite().title
+        'site_name': getSite().title,
+        'site_email': site_email,
+        'site_url': getSite().absolute_url()
     }
 
     body_safe = body.encode('utf-8')
