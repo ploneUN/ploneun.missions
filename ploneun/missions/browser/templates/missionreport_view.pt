@@ -48,7 +48,7 @@
 	  <div class="mission-report-title">
             <h1>UN</h1>
             <h2>Mission Report</h2>
-            <h3 tal:content="mission/title">Title</h3>
+            <h3 tal:content="structure view/w/title/render">Title</h3>
             <h3>
               Authors: <span tal:content="structure
 					  view/w/report_author/render"></span>
