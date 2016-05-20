@@ -1,5 +1,7 @@
 Changelog
 =========
+1.0.0a21 (may 20, 2016)
+-modified template
 
 1.0.0a20 (may 16, 2016)
 -modified email template and release for production
