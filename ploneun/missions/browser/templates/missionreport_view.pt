@@ -43,8 +43,7 @@
 	</div>
 
 	<div tal:define="mission view/mission;
-			 mission_view nocall: mission/view;
-			 dummy mission_view/update;">
+			 mission_view nocall: mission/view;">
 
 	  <div class="mission-report-title">
             <h1>UN</h1>
