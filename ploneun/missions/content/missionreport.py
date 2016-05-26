@@ -283,8 +283,8 @@ class missionReportAddForm(dexterity.AddForm):
         
             
         
-        if 'IILOOffices.mission_location_other' in self.fields.keys():
-            move(self, 'IILOOffices.mission_location_other', after='IILOCountries.mission_location')
+        #if 'IILOOffices.mission_location_other' in self.fields.keys():
+        #    move(self, 'IILOOffices.mission_location_other', after='IILOCountries.mission_location')
 
         if 'IILOTheme.ilo_themes' in self.fields.keys():
             move(self, 'IILOTheme.ilo_themes', after='mission_location_other')
