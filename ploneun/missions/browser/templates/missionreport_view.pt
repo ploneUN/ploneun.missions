@@ -40,7 +40,7 @@
                 Report</b>.
             </dd> -->
             <dd>This report is currently saved as a private draft. If
-              you wish to share this report to colleagues, please click <b><a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=submit">Submit</a></b>.
+              you wish to share this report to colleagues, please click <b><a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=share_intranet">Submit</a></b>.
             </dd>
           </dl>
 	</div>
