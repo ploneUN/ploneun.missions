@@ -34,6 +34,7 @@ class IMissionFacility(form.Schema, IImageScaleTraversable):
     """
     top_result = schema.TextLine(
             title=u'Number of latest Mission Reports to display',
+            description=u"If set to 0, all will be displayed.",
             required=False,
             default=u'5')
     pass
