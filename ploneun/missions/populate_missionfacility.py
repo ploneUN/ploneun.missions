@@ -19,7 +19,7 @@ and allow you to complete large parts of your mission report before you have eve
 <p>You can browse by a specific date, month or year when viewing the calendar</p>
 '''
 
-@grok.subscribe(IMissionFacility, IObjectAddedEvent)
+#@grok.subscribe(IMissionFacility, IObjectAddedEvent)
 def populate_calendar(obj, event):
 
     if obj.has_key('index'):
