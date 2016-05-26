@@ -23,6 +23,7 @@ from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
 
 from ploneun.missions import MessageFactory as _
+from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 
 # Interface class; used to define content-type schema.
@@ -31,6 +32,28 @@ class IMissionFacility(form.Schema, IImageScaleTraversable):
     """
     
     """
+    top_result = schema.TextLine(
+            title=u'Number of latest Mission Reports to display',
+            required=False,
+            default=u'5')
     pass
 
 alsoProvides(IMissionFacility, IFormFieldProvider)
+
+class missionFacilityAddForm(dexterity.AddForm):
+    grok.name('ploneun.missions.missionfacility')
+    form.wrap(False)
+    
+    def updateFields(self):
+        super(missionFacilityAddForm, self).updateFields()
+        self.fields['IDublinCore.description'].widgetFactory = WysiwygFieldWidget
+        return True
+    
+
+class missionFacilityEditForm(dexterity.EditForm):
+    grok.context(IMissionFacility)
+    
+    def updateFields(self):
+        super(missionFacilityEditForm, self).updateFields()
+        self.fields['IDublinCore.description'].widgetFactory = WysiwygFieldWidget
+        return True
