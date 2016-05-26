@@ -34,10 +34,13 @@
 	<div tal:define="state python:here.portal_workflow.getInfoFor(here,'review_state')">
           <dl class="portalMessage info" tal:condition="python:state == 'private'">
             <dt>Draft</dt>
-            <dd>This report is in currently saved as a private draft. If
+            <!-- <dd>This report is in currently saved as a private draft. If
               you wish to submit and send this report to colleagues,
               please click on <b>State: Private</b> and select <b>Submit
                 Report</b>.
+            </dd> -->
+            <dd>This report is currently saved as a private draft. If
+              you wish to share this report to colleagues, please click <b><a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=submit">Submit</a></b>.
             </dd>
           </dl>
 	</div>
