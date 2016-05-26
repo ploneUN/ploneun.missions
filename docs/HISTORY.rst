@@ -1,5 +1,8 @@
 Changelog
 =========
+1.0.0a22 (may 26, 2016)
+-created view for mission facility and modified view
+
 1.0.0a21 (may 20, 2016)
 -modified template
 
