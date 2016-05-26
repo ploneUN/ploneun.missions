@@ -30,4 +30,6 @@ class Index(dexterity.DisplayForm):
                                          'review_state':'shared_intranet',
                                          'sort_on':'created',
                                          'sort_order':'reverse'})
+        if top_number == 0:
+            return brains
         return brains[:top_number]
