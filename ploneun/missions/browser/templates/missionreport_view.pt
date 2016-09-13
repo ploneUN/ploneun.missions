@@ -49,7 +49,7 @@
 			 mission_view nocall: mission/view;">
 
 	  <div class="mission-report-title">
-            <h1>UN</h1>
+            <h1>ILO</h1>
             <h2>Mission Report</h2>
             <h3 tal:content="structure view/w/title/render">Title</h3>
             <h3>
