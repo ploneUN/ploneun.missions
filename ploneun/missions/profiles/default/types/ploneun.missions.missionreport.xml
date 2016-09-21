@@ -21,6 +21,7 @@
   <property name="schema">ploneun.missions.content.missionreport.IMissionReport</property> 
   <property name="klass">plone.dexterity.content.Container</property>
   <property name="behaviors">
+     <element value="plone.app.content.interfaces.INameFromTitle" />
      <element value="plone.multilingualbehavior.interfaces.IDexterityTranslatable"/>
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
      <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer"/>
