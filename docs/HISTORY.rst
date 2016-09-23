@@ -1,5 +1,7 @@
 Changelog
 =========
+1.0.0a24 (sept 23)
+-enabled inamefromtitle behavior
 1.0.0a23 (sept 13)
 -changed UN into ILO on the header
 1.0.0a22 (may 26, 2016)
